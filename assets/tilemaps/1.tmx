@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="19" height="10" tilewidth="16" tileheight="16" backgroundcolor="#000000" nextobjectid="1">
+ <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="80">
+  <image source="../bitmaps/tiles.png" width="256" height="80"/>
+ </tileset>
+ <layer name="bottom" width="19" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BoAzEsmBAAABXgAG8=
+  </data>
+ </layer>
+ <layer name="middle" width="19" height="10">
+  <data encoding="base64" compression="zlib">
+   eJyzY2BgsINiewbKAMwcDSD2p4JZ1DAHBLSBWIdCM3igNB8Q21BgjgQQyyCZRS5gB2IOCs1iBGImKGYGYmmouBwQy2NR7wjETlDsjCYnCMRCUCyCZC4uzIzDHSDMgmQWMVgYhzvwYQC1Kgcl
+  </data>
+ </layer>
+ <layer name="top" width="19" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DkAQAC+AAB
+  </data>
+ </layer>
+</map>
