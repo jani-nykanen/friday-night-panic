@@ -6,9 +6,10 @@ bitmap tiles assets/bitmaps/tiles.png
 bitmap bg assets/bitmaps/bg.png
 bitmap font16 assets/bitmaps/font16.png
 # Tilemaps
+tilemap collisions assets/tilemaps/collisions.tmx
 tilemap 1 assets/tilemaps/1.tmx
 tilemap 2 assets/tilemaps/2.tmx
 tilemap 3 assets/tilemaps/3.tmx
 tilemap 4 assets/tilemaps/4.tmx
 tilemap 5 assets/tilemaps/5.tmx
-tilemap collisions assets/tilemaps/collisions.tmx
+tilemap 6 assets/tilemaps/6.tmx

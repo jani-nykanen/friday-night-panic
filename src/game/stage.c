@@ -21,6 +21,8 @@ static TILEMAP* map;
 static TILEMAP* col;
 /// Map id
 static int mapID;
+/// Water pos
+static float waterPos;
 
 /// Draw the current tilemap
 /// < tx X translation
@@ -49,7 +51,16 @@ static void draw_tilemap(int tx, int ty)
                     sy = (tileid/16);
                     sy *= 16;
 
-                    draw_bitmap_region(bmpTiles,sx,sy,16,16,tx + x*16, ty + y*16,FLIP_NONE);
+                    if(tileid == 21)
+                    {
+                        sx += - waterPos;
+                        draw_bitmap_region(bmpTiles,sx,sy,16,16,tx + x*16, ty + y*16
+                            + (int)(sin(waterPos/8.0f * M_PI)*2 +2),FLIP_NONE);
+                    }
+                    else
+                    {
+                        draw_bitmap_region(bmpTiles,sx,sy,16,16,tx + x*16, ty + y*16,FLIP_NONE);
+                    }
                 }
             }
         }
@@ -128,6 +139,7 @@ void init_stage()
     bmpTiles = get_bitmap("tiles");
 
     mapID = 1;
+    waterPos = 0.0f;
 
     map = get_tilemap("1");
     col = get_tilemap("collisions");
@@ -136,7 +148,9 @@ void init_stage()
 /// Update stage
 void stage_update(float tm)
 {
-
+    waterPos -= 0.125f * tm;
+    if(waterPos <= -16.0f)
+        waterPos += 16.0f;
 }
 
 /// Get player collision
@@ -199,4 +213,10 @@ float get_lowest_solid_y()
     }
 
     return 0.0f;
+}
+
+/// Get current map
+TILEMAP* get_current_map()
+{
+    return map;
 }

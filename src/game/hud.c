@@ -3,7 +3,10 @@
 
 #include "hud.h"
 
+#include "stage.h"
+
 #include "../engine/assets.h"
+#include "../engine/tilemap.h"
 #include "../engine/graphics.h"
 
 /// Font bitmap
@@ -64,7 +67,7 @@ static void draw_frame()
 /// Draw HUD text
 static void draw_hud_text()
 {
-    draw_text(bmpFont,(Uint8*)"ROOM 0: Test Area",32,2,174,-7,0,false);
+    draw_text(bmpFont,get_current_map()->name,32,2,174,-7,0,false);
 
     set_time_string();
     draw_text(bmpFont,timeString,16,2,186,-7,0,false);

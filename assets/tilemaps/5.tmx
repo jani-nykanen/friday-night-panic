@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="19" height="10" tilewidth="16" tileheight="16" backgroundcolor="#000000" nextobjectid="1">
+ <properties>
+  <property name="name" value="Room 5 - Leave the House"/>
+ </properties>
  <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="80">
   <image source="../bitmaps/tiles.png" width="256" height="80"/>
  </tileset>
  <layer name="bottom" width="19" height="10">
+  <properties>
+   <property name="name" value="Room 5 - Leave the House"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJwzZmBgMCaATRiwA18g1gRiOyhmJwLjAgZQ8/ygZuICbHjkkM2CAVsi1BNrli+JenWBWA+I9aF8Bzxq8YUNCGgBsTYQ6xBhLwcanw3NfCsgtgZiGwLmsEPNEkPCEmhqvIBYAYdeGI0Lo7sTBPhwuIWJSpgFiIWAGACucAiI
+   eJwzZmBgMCaATRiwA18g1gRiOyhmJwLjAgZQ8/ygZuICbHjkkM2CAVsi1BNrli+JenWBWA+I9aF8Bzxq8YUNCGgBsTYQ6xBhLwcanw3NfCsgtgZiGwLmsEPNEkPCEmhqvIBYAYdeGI0Lo7sTBPjwuIeJACYFAACrcAhe
   </data>
  </layer>
  <layer name="middle" width="19" height="10">
@@ -15,7 +21,7 @@
  </layer>
  <layer name="top" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BwA0YamAkAA0wAAg==
+   eJxjYBgFo2BwA0YgZiJCHRMRmAWIhYAYAAZMACw=
   </data>
  </layer>
 </map>

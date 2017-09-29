@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="19" height="10" tilewidth="16" tileheight="16" backgroundcolor="#000000" nextobjectid="1">
  <properties>
-  <property name="name" value="Room 3 - Something Special"/>
+  <property name="name" value="Room 6 - Coming Soon!"/>
  </properties>
  <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="80">
   <image source="../bitmaps/tiles.png" width="256" height="80"/>
+  <tile id="17">
+   <properties>
+    <property name="name" value="Room 6 - Coming Soon!"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="bottom" width="19" height="10">
+  <properties>
+   <property name="name" value="Room 5 - Leave the House"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYCAdGFBR/Ugwy4GKZiEDdiLUEGs3Ox7zWLGIceJRwwjETFCMDkSxiEmi6VFFkhMEYiEoFkPDuMxC1iOMwywA0mAD7g==
+   eJxjYBgFo2BoASY0TA4AAAToAAk=
   </data>
  </layer>
  <layer name="middle" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYEAFvkCsCcR2OLAGEPsBsT8DccAXqh6GYWZrkGAGLqAFxNpArEOhOSBgBcTWQGxDBbNkgVgOiOWpYJYiECsBsTIVzBoIwATEzFQySwiIhZH4YhRgAKeYCCs=
+   eJxjYBgFo4B2gAmImalklhAQi2ARJ8d8ABF4AC8=
   </data>
  </layer>
  <layer name="top" width="19" height="10">

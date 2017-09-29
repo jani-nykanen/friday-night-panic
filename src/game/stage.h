@@ -6,6 +6,8 @@
 
 #include "player.h"
 
+#include "../engine/assets.h"
+
 /// Initialize stage
 void init_stage();
 
@@ -24,5 +26,9 @@ void stage_draw();
 /// Return the lowest (actually highest) solid y position
 /// > The lowest position in screen coords
 float get_lowest_solid_y();
+
+/// Return the current map
+/// > A pointer to the map
+TILEMAP* get_current_map();
 
 #endif // __STAGE__

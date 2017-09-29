@@ -5,6 +5,27 @@
 
 #include "tmx.h"
 
+/// Map name
+static char mapName[32];
+
+/// Get property
+static void get_prop(tmx_property* p, void* depth)
+{
+    if(p != NULL)
+    {
+        if(p->type == PT_STRING && strcmp(p->name,"name") == 0)
+        {
+            // Clear name
+            int i = 0;
+            for(; i < 32; i++)
+                mapName[i] = '\0';
+
+            strcpy(mapName,p->value.string);
+        }
+    }
+    
+}
+
 /// Load a tilemap from a file
 TILEMAP* load_tilemap(const char* path)
 {
@@ -62,6 +83,10 @@ TILEMAP* load_tilemap(const char* path)
         l++;
     }   
     t->layerCount = l;
+    
+    tmx_property_foreach(map->properties, get_prop, (void*)0);
+
+    strcpy((char*)t->name,mapName);
 
     // Free map as it's no longer needed
     tmx_map_free(map);

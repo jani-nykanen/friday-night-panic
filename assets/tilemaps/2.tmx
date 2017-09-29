@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="19" height="10" tilewidth="16" tileheight="16" backgroundcolor="#000000" nextobjectid="1">
+ <properties>
+  <property name="name" value="Room 2 - Nothing Special"/>
+ </properties>
  <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="80">
   <image source="../bitmaps/tiles.png" width="256" height="80"/>
  </tileset>
