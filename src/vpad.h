@@ -10,12 +10,16 @@
 /// Initialize virtual gamepad
 void vpad_init();
 
+/// Update vpad
+void vpad_update();
+
 /// Get stick axis
 /// > A vector holding stick axis information
 VEC2 vpad_get_stick();
 
-/// Update vpad
-void vpad_update();
+/// Get stick delta
+/// > Delta vector
+VEC2 vpad_get_delta();
 
 /// Add a new button
 /// < index Button index

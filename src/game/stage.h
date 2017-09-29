@@ -21,4 +21,8 @@ void stage_get_player_collision(PLAYER* pl, float tm);
 /// Draw stage
 void stage_draw();
 
+/// Return the lowest (actually highest) solid y position
+/// > The lowest position in screen coords
+float get_lowest_solid_y();
+
 #endif // __STAGE__

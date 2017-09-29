@@ -3,6 +3,8 @@
 
 #include "player.h"
 
+#include "stage.h"
+
 #include "../vpad.h"
 
 #include "../engine/graphics.h"
@@ -134,6 +136,20 @@ static void pl_animate(PLAYER* pl, float tm)
     }   
 }
 
+/// Kill player
+/// < pl Player to kill
+static void pl_die(PLAYER* pl)
+{
+    pl->pos.x = 16.0f;
+    pl->pos.y = 8.0f + get_lowest_solid_y();
+
+    pl->speed.x = 0.0f;
+    pl->speed.y = 0.0f;
+    pl->dir = FLIP_NONE;
+    pl->climbing = false;
+    pl->crouch = false;
+}
+
 /// Init global player data (read: bitmaps)
 void init_player()
 {
@@ -169,6 +185,9 @@ void player_update(PLAYER* pl, float tm)
 
     pl->canJump = false;
     pl->touchLadder = false;
+
+    // In the case the player drops outside the stage
+    player_hurt_collision(pl,vec2(0.0f,168.0f),vec2(320.0f,64.0f));
 }
 
 /// Get (wall) collision
@@ -244,13 +263,30 @@ void player_get_climb_collision(PLAYER* pl, VEC2 p, float l)
         pl->touchLadder = true;
 
         /// @TODO: Delta here
-        if(!pl->climbing && vpad_get_stick().y < -0.5f)
+        if(!pl->climbing && vpad_get_stick().y < -0.25f && vpad_get_delta().y < -0.5f)
         {
             pl->climbing = true;
             pl->speed.x = 0.0f;
             pl->speed.y = 0.0f;
             pl->pos.x = p.x + l/2.0f;
+            pl->spr.frame = 0;
+            pl->spr.row = 2;
         }
+    }
+}
+
+/// Hurt collision (kills the player)
+void player_hurt_collision(PLAYER* pl, VEC2 p, VEC2 dim)
+{
+    float x = pl->pos.x;
+    float y = pl->pos.y;
+
+    float pw = pl->dim.x;
+    float ph = pl->dim.y;
+
+    if(x+pw >= p.x && x-pw <= p.x+dim.x && y >= p.y && y-ph <= p.y+dim.y)
+    {
+        pl_die(pl);
     }
 }
 

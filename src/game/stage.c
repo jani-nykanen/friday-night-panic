@@ -111,6 +111,11 @@ static void tilemap_collisions(PLAYER* pl, float tm)
                 {
                     player_get_climb_collision(pl,vec2(8.0f + x*16.0f,8.0f + y*16.0f),16.0f);
                 }
+
+                if(tid == 17)
+                {
+                    player_hurt_collision(pl,vec2(8.0f + x*16.0f + 2.0f,8.0f + y*16.0f + 5.0f),vec2(12.0f,13.0f));
+                }
             }
         }
     }
@@ -170,4 +175,28 @@ void stage_draw()
 {
     draw_bitmap(bmpBg,8,8,FLIP_NONE);
     draw_tilemap(8,8);
+}
+
+/// Return the lowest (actually highest) solid y position
+float get_lowest_solid_y()
+{
+    int x = 0;
+    int y = 0;
+    Uint8 tid;
+
+    int layer;
+    for(layer=0; layer < map->layerCount; layer ++)
+    {
+        for(y = 4; y <= map->h; y++)
+        {
+            tid = col->layers[0] [map->layers[layer] [y*map->w + x] -1];
+                
+            if(tid == 1 || tid == 5 || tid == 7 || tid == 10 || tid == 11 || tid == 12 || tid == 14 || tid == 15)
+            {
+                 return y*16.0f;
+            }
+        }
+    }
+
+    return 0.0f;
 }

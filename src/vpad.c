@@ -13,6 +13,10 @@ BUTTON;
 
 /// The good ol' gamepad stick
 static VEC2 stick;
+/// Old stick
+static VEC2 oldStick;
+/// Delta
+static VEC2 delta;
 /// Buttons
 static BUTTON buttons[256];
 
@@ -23,15 +27,11 @@ void vpad_init()
     stick.y = 0.0f;
 }
 
-/// Get stick axis
-VEC2 vpad_get_stick()
-{
-    return stick;
-}
-
 /// Update vpad
 void vpad_update()
 {
+    oldStick = stick;
+
     stick.x = 0.0f;
     stick.y = 0.0f;
 
@@ -52,6 +52,21 @@ void vpad_update()
     {
         stick.y = 1.0f;
     }
+
+    delta.x = stick.x - oldStick.x;
+    delta.y = stick.y - oldStick.y;
+}
+
+/// Get stick axis
+VEC2 vpad_get_stick()
+{
+    return stick;
+}
+
+/// Get stick delta
+VEC2 vpad_get_delta()
+{
+    return delta;
 }
 
 /// Add a new button

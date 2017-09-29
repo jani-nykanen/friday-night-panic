@@ -53,6 +53,12 @@ void player_get_collision(PLAYER*pl, VEC2 p, float w, bool horizontal, bool dir,
 /// < l Side length
 void player_get_climb_collision(PLAYER* pl, VEC2 p, float l);
 
+/// Hurt collision (kills the player)
+/// < pl Player to hurt/kill
+/// < p Position
+/// < dim Hurt area dimensions
+void player_hurt_collision(PLAYER* pl, VEC2 p, VEC2 dim);
+
 /// Draw player
 /// < pl Player to draw
 void player_draw(PLAYER* pl);
