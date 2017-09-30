@@ -64,6 +64,12 @@ void bind_frame(FRAME* fr)
     gframe = fr; 
 }
 
+/// Return currently used frame
+FRAME* get_current_frame()
+{
+    return gframe;
+}
+
 /// Clear frame
 void clear_frame(Uint8 index)
 {

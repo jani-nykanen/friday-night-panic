@@ -24,18 +24,6 @@ void fr_gen_palette(FRAME* fr)
         fr->palette[i*3] = r *85;
         fr->palette[i*3 +1] = g *85;
         fr->palette[i*3 +2] = b *85;
-
-        fr->palette[i*3 + 64*3] = fr->palette[i*3] > 0 ? fr->palette[i*3] -85 : 0;
-        fr->palette[i*3 + 64*3 +1] = fr->palette[i*3 +1] > 0 ? fr->palette[i*3 +1] -85 : 0;
-        fr->palette[i*3 + 64*3 +2] = fr->palette[i*3 +2] > 0 ? fr->palette[i*3 +2] -85 : 0;
-
-        fr->palette[i*3 + 128*3] = fr->palette[i*3+ 64*3] > 0 ? fr->palette[i*3+ 64*3] -85 : 0;
-        fr->palette[i*3 + 128*3 +1] = fr->palette[i*3+ 64*3 +1] > 0 ? fr->palette[i*3+ 64*3 +1] -85 : 0;
-        fr->palette[i*3 + 128*3 +2] = fr->palette[i*3+ 64*3 +2] > 0 ? fr->palette[i*3+ 64*3 +2] -85 : 0;
-
-        fr->palette[i*3 + 192*3] = fr->palette[i*3+ 128*3] > 0 ? fr->palette[i*3+ 128*3] -85 : 0;
-        fr->palette[i*3 + 192*3 +1] = fr->palette[i*3+ 128*3 +1] > 0 ? fr->palette[i*3+ 128*3 +1] -85 : 0;
-        fr->palette[i*3 + 192*3 +2] = fr->palette[i*3+ 128*3 +2] > 0 ? fr->palette[i*3+ 128*3 +2] -85 : 0;
     }
 }
 

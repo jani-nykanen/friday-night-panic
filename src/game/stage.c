@@ -201,7 +201,7 @@ float get_lowest_solid_y()
     int layer;
     for(layer=0; layer < map->layerCount; layer ++)
     {
-        for(y = 4; y <= map->h; y++)
+        for(y = 3; y <= map->h; y++)
         {
             tid = col->layers[0] [map->layers[layer] [y*map->w + x] -1];
                 

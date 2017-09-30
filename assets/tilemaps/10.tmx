@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="19" height="10" tilewidth="16" tileheight="16" backgroundcolor="#000000" nextobjectid="1">
  <properties>
-  <property name="name" value="Room 6 - Garden"/>
+  <property name="name" value="Room 10 - Glitched"/>
  </properties>
  <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="80">
   <image source="../bitmaps/tiles.png" width="256" height="80"/>
@@ -16,12 +16,12 @@
    <property name="name" value="Room 5 - Leave the House"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYBh4YEAF/QZIbGoBmFmGVDTTgYpm4QNGQGwMxSZUMpOdTH1iWDC5ZoEAExrGZj4hDAAPKAPQ
+   eJxjYBgFo2DkAQAC+AAB
   </data>
  </layer>
  <layer name="middle" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJyzY2BgsKMAawCxPwMEoIv7oWFNHPph8jBzGPCIw4AvFvOxqWPAI44NGACxAwnq8QFkcwzINIMTiLmgbEMKzZLEIuZApF42NL4UAfWMQMwExcwEzDJkwA8EgVgIikWwyKObT4xZAD6vDlc=
+   eJxjYCAecJKgVgwLWxJJjAeHWmRgCJUTw6EGJCaOwy58ZiObKYkmZ41FvQEDYb9jswdklgMePU5A7IzDLCMoG6Yfm7uQ7WRGYhviUAMzyxFJnBFNHYgvzIA/3LG5AUQLoskJQs3C5hZkYIRFnpBZID3GQOzFAPGPD5SvAsQmaHrZGVD9A8IAqhcIeQ==
   </data>
  </layer>
  <layer name="top" width="19" height="10">

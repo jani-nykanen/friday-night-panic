@@ -44,6 +44,10 @@ SDL_Point get_dimensions();
 /// < fr Frame to bind
 void bind_frame(FRAME* fr);
 
+/// Return currently used frame
+/// > Frame
+FRAME* get_current_frame();
+
 /// Clear frame
 /// < index Palette index
 void clear_frame(Uint8 index);

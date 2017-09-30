@@ -15,7 +15,7 @@ typedef struct
     Uint8* data; /// Frame data
     Uint8* colorData; /// Color data
     float* depth; /// Depth buffer
-    Uint8 palette [256*3]; /// Palette lookup table
+    Uint8 palette [256]; /// Palette lookup table
 
     SDL_Texture* tex; /// Frame texture   
 }

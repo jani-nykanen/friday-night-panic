@@ -71,6 +71,9 @@ static void draw_hud_text()
 
     set_time_string();
     draw_text(bmpFont,timeString,16,2,186,-7,0,false);
+
+    draw_text(bmpFont,(Uint8*)"* * *",32,320-64,186,-7,0,false);
+    draw_text(bmpFont,(Uint8*)"Lives:",32,320-64,174,-7,0,false);
 }
 
 /// Initialize HUD

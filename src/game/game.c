@@ -46,6 +46,29 @@ static void game_update(float tm)
     hud_update(tm);
 
     vpad_update();
+
+
+    // TEMP, put into another file
+    // Palette swap
+    if(get_key_state((int)SDL_SCANCODE_F2) == PRESSED)
+    {
+        FRAME* f = get_current_frame();
+
+        int i = 0b00110101;
+        f->palette[i*3] = 255;
+        f->palette[i*3 +1] = 85;
+        f->palette[i*3 +2] = 255;
+
+        i = 0b00111101;
+        f->palette[i*3] = 255;
+        f->palette[i*3 +1] = 255;
+        f->palette[i*3 +2] = 255;
+
+        i = 0b00011101;
+        f->palette[i*3] = 85;
+        f->palette[i*3 +1] = 255;
+        f->palette[i*3 +2] = 255;
+    }
 }
 
 /// Draw game
