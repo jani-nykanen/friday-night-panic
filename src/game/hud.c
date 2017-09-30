@@ -82,7 +82,7 @@ void init_hud()
     bmpFrame = get_bitmap("frame");
     bmpFont = get_bitmap("font16");
 
-    gameTime = 2.0f * 60.0f * 60.0f;
+    gameTime = 3.0f * 60.0f * 60.0f;
 }
 
 /// Update HUD

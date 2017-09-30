@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="19" height="10" tilewidth="16" tileheight="16" backgroundcolor="#000000" nextobjectid="1">
+ <properties>
+  <property name="name" value="Room 13 - Home Sweet"/>
+ </properties>
+ <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="96">
+  <image source="../bitmaps/tiles.png" width="256" height="96"/>
+  <tile id="17">
+   <properties>
+    <property name="name" value="Room 6 - Coming Soon!"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="bottom" width="19" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYMANDPDIkQoMsLDJNR9ZnwOFZjrgEaOm/7HZMwoGDgAAdwMCgQ==
+  </data>
+ </layer>
+ <layer name="middle" width="19" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAOfIHYD4o1gdiOCEwMQDYXn9nkAFxuphRoAbE2EOtQwSwrILYGYhsS9RkBsTEaNgFiPjLdwY6GGWhkFhMSZibDLFkglgNieSAWQsIiaGaTigHY6gsS
+  </data>
+ </layer>
+ <layer name="top" width="19" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFtAQhA+0AOoBgKB1IRTODqGgWNgAAGG8BSw==
+  </data>
+ </layer>
+</map>
