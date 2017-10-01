@@ -116,3 +116,42 @@ void frame_update_tex(FRAME* fr)
 
     SDL_UpdateTexture(fr->tex,NULL,fr->data,fr->w*4);
 }
+
+/// Swap palette colors
+void frame_swap_cga_palette(FRAME* f)
+{
+    int i = 0b00110101;
+
+    if(f->palette[i*3+2] == 85)
+    {
+        f->palette[i*3] = 255;
+        f->palette[i*3 +1] = 85;
+        f->palette[i*3 +2] = 255;
+
+        i = 0b00111101;
+        f->palette[i*3] = 255;
+        f->palette[i*3 +1] = 255;
+        f->palette[i*3 +2] = 255;
+
+        i = 0b00011101;
+        f->palette[i*3] = 85;
+        f->palette[i*3 +1] = 255;
+        f->palette[i*3 +2] = 255;
+    }
+    else
+    {
+        f->palette[i*3] = 255;
+        f->palette[i*3 +1] = 85;
+        f->palette[i*3 +2] = 85;
+
+        i = 0b00111101;
+        f->palette[i*3] = 255;
+        f->palette[i*3 +1] = 255;
+        f->palette[i*3 +2] = 85;
+
+        i = 0b00011101;
+        f->palette[i*3] = 85;
+        f->palette[i*3 +1] = 255;
+        f->palette[i*3 +2] = 85;
+    }
+}

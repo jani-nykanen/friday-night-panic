@@ -4,6 +4,7 @@
 #include "player.h"
 
 #include "stage.h"
+#include "status.h"
 
 #include "../vpad.h"
 
@@ -148,6 +149,8 @@ static void pl_die(PLAYER* pl)
     pl->dir = FLIP_NONE;
     pl->climbing = false;
     pl->crouch = false;
+
+    get_global_status()->lives --;
 }
 
 /// Init global player data (read: bitmaps)

@@ -4,6 +4,7 @@
 #include "hud.h"
 
 #include "stage.h"
+#include "status.h"
 
 #include "../engine/assets.h"
 #include "../engine/tilemap.h"
@@ -14,14 +15,14 @@ static BITMAP* bmpFont;
 /// Frame bitmap
 static BITMAP* bmpFrame;
 
-/// Game time (temporarily here)
-static float gameTime;
 /// Time string
 static Uint8 timeString[16];
 
 /// Set time string
 static void set_time_string()
 {   
+    float gameTime = get_global_status()->time;
+
     timeString[0] = 'T';
     timeString[1] = 'I';
     timeString[2] = 'M';
@@ -72,7 +73,11 @@ static void draw_hud_text()
     set_time_string();
     draw_text(bmpFont,timeString,16,2,186,-7,0,false);
 
-    draw_text(bmpFont,(Uint8*)"* * *",32,320-64,186,-7,0,false);
+    int i = 0;
+    for(; i < get_global_status()->lives; i++)
+    {
+        draw_text(bmpFont,(Uint8*)"* ",32,320-64 + i*18,186,-7,0,false);
+    }
     draw_text(bmpFont,(Uint8*)"Lives:",32,320-64,174,-7,0,false);
 }
 
@@ -81,14 +86,12 @@ void init_hud()
 {
     bmpFrame = get_bitmap("frame");
     bmpFont = get_bitmap("font16");
-
-    gameTime = 3.0f * 60.0f * 60.0f;
 }
 
 /// Update HUD
 void hud_update(float tm)
 {
-    gameTime -= 1.0f * tm;
+    
 }
 
 /// Draw HUD

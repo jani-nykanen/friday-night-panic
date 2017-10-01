@@ -3,8 +3,8 @@
  <properties>
   <property name="name" value="Room 1 - The Beginning"/>
  </properties>
- <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="80">
-  <image source="../bitmaps/tiles.png" width="256" height="80"/>
+ <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="96">
+  <image source="../bitmaps/tiles.png" width="256" height="96"/>
  </tileset>
  <layer name="bottom" width="19" height="10">
   <data encoding="base64" compression="zlib">
@@ -13,7 +13,7 @@
  </layer>
  <layer name="middle" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJyzY2BgsINiewbKAMwcDSD2p4JZ1DAHBLSBWIcC/dxAzANl8wGxDQVmSQCxDJJZ5AJ2IOag0CxGIGaCYmYgloaKywGxPBb1jkDsBMXOaHKCQCwExSJI5uLCzDjcAcIsSGYRg4VxuAMfBgDJRgcw
+   eJyzY2BgsINiewbKAMwcDSD2p4JZ1DAHBLSBWIcC/dxAzANl8wGxDQVmSQCxDJJZ5AJ2IOZAMysUiMNIMIMRiJmgmBmIpaHickAcDsQRaOodgdgJip3R5ASBWAiKRZDMxYWZcbgDhFmQzCIGC+NwBz4MAA0QCGs=
   </data>
  </layer>
  <layer name="top" width="19" height="10">

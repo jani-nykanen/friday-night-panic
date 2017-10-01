@@ -31,4 +31,8 @@ FRAME* frame_create(int w, int h);
 /// < fr Frame
 void frame_update_tex(FRAME* fr);
 
+/// Swap the CGA palette colors
+/// < fr Frame
+void frame_swap_cga_palette(FRAME* fr);
+
 #endif // __FRAME__
