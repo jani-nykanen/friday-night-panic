@@ -170,6 +170,7 @@ static void pl_die(PLAYER* pl, float tm)
             pl->speed.x = 0.0f;
             pl->speed.y = 0.0f;
             pl->target.y = 0.0f;
+            pl->target.x = 0.0f;
             pl->dir = FLIP_NONE;
             pl->climbing = false;
             pl->crouch = false;
@@ -187,6 +188,7 @@ static void pl_die(PLAYER* pl, float tm)
             pl->dying = false;
             pl->spr.frame = 0;
             pl->spr.row = 0;
+            pl->spr.count = 0.0f;
         }
     }
 }
