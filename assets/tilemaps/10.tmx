@@ -21,7 +21,7 @@
  </layer>
  <layer name="middle" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYCAecJKgVgwLWxJJjAeHWmRgCJUTw6EGJCaOwy58ZiObKYkmZ41FvQEDYb9jswdklgMePU5A7IzDLGMoG6Yfm7uQ7WRGYhviUAMzyxFJnBVNHUhOmAF/uGNzA4hWQJPzhpqFzS3IwBiLPD+aGkM0s4yg+rygbvaB8lWQzIMBdgZU/4AwACBiCSU=
+   eJxjYCAecJKgVgwLWxJJjAeHWmRgCJUTw6EGJCaOwy58ZiObKYkmZ41FvQEDYb9jswdklgMePU5A7IzDLBMoG6Yfm7uQ7WRGYhviUAMzyxFJnBVNHUhOmAF/uGNzA4hWQJPzhpqFzS3IgB2LPD+aGkM0s4yA2BiIvaBu9oHyVRgQYYdsvhgaBgAN9gj7
   </data>
  </layer>
  <layer name="top" width="19" height="10">

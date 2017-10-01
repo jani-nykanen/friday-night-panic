@@ -21,7 +21,7 @@ void init_object_control()
     init_player();
 
     // Create objects
-    pl = create_player(vec2(4.0f * 16.0f,8.0f * 16.0f));
+    pl = create_player(vec2(4.0f * 16.0f,8.5f * 16.0f));
 }
 
 /// Update object controller

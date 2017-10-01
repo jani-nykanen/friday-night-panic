@@ -21,6 +21,8 @@ typedef struct
     bool canJump; /// Can the player jump, naturally
     bool climbing; /// Is the player climbing
     bool touchLadder; /// Is touching ladder
+    bool dying; /// Is dying
+    int deathPhase; /// Exactly
     int dir; /// Direction
     SPRITE spr; /// Player sprite
 }

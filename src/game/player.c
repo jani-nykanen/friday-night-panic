@@ -137,20 +137,70 @@ static void pl_animate(PLAYER* pl, float tm)
     }   
 }
 
+/// Dying procedures
+/// < pl Player to die
+/// < tm Time multiplier
+static void pl_die(PLAYER* pl, float tm)
+{
+    if(pl->deathPhase != 2)
+    {
+        pl->target.y = 3.0f;
+        pl->speed.x = 0.0f;
+        pl->target.x = 0.0f;
+    }
+
+    if(pl->deathPhase == 0)
+    {
+        spr_animate(&pl->spr,3,0,3,6,tm);
+        if(pl->speed.y > 0.0f)
+        {
+            pl->deathPhase = 1;
+        }
+    }
+    else if(pl->deathPhase == 1)
+    {
+        spr_animate(&pl->spr,3,4,8,6,tm);
+        if(pl->spr.frame == 8)
+        {
+            pl->spr.frame = 4;
+            pl->spr.row = 1;
+
+            pl->pos.x = 16.0f;
+            pl->pos.y = 8.0f + get_lowest_solid_y();    
+            pl->speed.x = 0.0f;
+            pl->speed.y = 0.0f;
+            pl->target.y = 0.0f;
+            pl->dir = FLIP_NONE;
+            pl->climbing = false;
+            pl->crouch = false;
+        
+            get_global_status()->lives --;
+
+            pl->deathPhase = 2;
+        }
+    }
+    else if(pl->deathPhase == 2)
+    {
+        spr_animate(&pl->spr,1,4,8,5,tm);
+        if(pl->spr.frame == 8)
+        {
+            pl->dying = false;
+            pl->spr.frame = 0;
+            pl->spr.row = 0;
+        }
+    }
+}
+
 /// Kill player
 /// < pl Player to kill
-static void pl_die(PLAYER* pl)
+static void pl_kill(PLAYER* pl)
 {
-    pl->pos.x = 16.0f;
-    pl->pos.y = 8.0f + get_lowest_solid_y();
-
-    pl->speed.x = 0.0f;
-    pl->speed.y = 0.0f;
-    pl->dir = FLIP_NONE;
-    pl->climbing = false;
-    pl->crouch = false;
-
-    get_global_status()->lives --;
+    pl->dying = true;
+    pl->speed.y = -2.25f;
+    pl->deathPhase = 0;
+    pl->spr.count = 0.0f;
+    pl->spr.frame = 3;
+    pl->spr.row = 3;
 }
 
 /// Init global player data (read: bitmaps)
@@ -171,6 +221,8 @@ PLAYER create_player(VEC2 pos)
     pl.speedMul.y = 0.08f;
     pl.canJump = false;
     pl.climbing = false;
+    pl.dying = false;
+    pl.deathPhase = 0;
     pl.spr = create_sprite(32,32);
     pl.dir = 0;
     pl.dim = vec2(4.0f,18.0f);
@@ -182,8 +234,16 @@ PLAYER create_player(VEC2 pos)
 /// Update player
 void player_update(PLAYER* pl, float tm)
 {
-    pl_control(pl,tm);
-    pl_animate(pl,tm);
+    if(pl->dying)
+    {
+        pl_die(pl,tm); 
+    }
+    else
+    {
+        pl_control(pl,tm);
+        pl_animate(pl,tm);
+    }
+
     pl_move(pl,tm);
 
     pl->canJump = false;
@@ -196,6 +256,8 @@ void player_update(PLAYER* pl, float tm)
 /// Get (wall) collision
 void player_get_collision(PLAYER*pl, VEC2 p, float w, bool horizontal, bool dir, float tm)
 {
+    if(pl->dying) return;
+
     float x = pl->pos.x;
     float y = pl->pos.y;
 
@@ -255,6 +317,8 @@ void player_get_collision(PLAYER*pl, VEC2 p, float w, bool horizontal, bool dir,
 /// Climb collision
 void player_get_climb_collision(PLAYER* pl, VEC2 p, float l)
 {
+    if(pl->dying) return;
+
     float x = pl->pos.x;
     float y = pl->pos.y;
 
@@ -281,6 +345,8 @@ void player_get_climb_collision(PLAYER* pl, VEC2 p, float l)
 /// Hurt collision (kills the player)
 void player_hurt_collision(PLAYER* pl, VEC2 p, VEC2 dim)
 {
+    if(pl->dying) return;
+
     float x = pl->pos.x;
     float y = pl->pos.y;
 
@@ -289,7 +355,7 @@ void player_hurt_collision(PLAYER* pl, VEC2 p, VEC2 dim)
 
     if(x+pw >= p.x && x-pw <= p.x+dim.x && y >= p.y && y-ph <= p.y+dim.y)
     {
-        pl_die(pl);
+        pl_kill(pl);
     }
 }
 
