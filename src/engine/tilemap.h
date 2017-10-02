@@ -11,7 +11,7 @@ typedef struct
 {
     int w; /// Width
     int h; /// Height
-    Uint8* layers[16]; /// Layers
+    short* layers[16]; /// Layers
     Uint8 name[32]; /// Map name
     int layerCount; /// Layer count
 }

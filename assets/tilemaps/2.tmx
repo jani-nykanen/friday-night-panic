@@ -3,12 +3,12 @@
  <properties>
   <property name="name" value="Room 2 - Nothing Special"/>
  </properties>
- <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="80">
-  <image source="../bitmaps/tiles.png" width="256" height="80"/>
+ <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="112">
+  <image source="../bitmaps/tiles.png" width="256" height="112"/>
  </tileset>
  <layer name="bottom" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgwEYDrQDaATEaGAeOsYnjgsAAIMoASQ=
+   eJxjYBg5IBONn4ZFbKCA4UA7gEZAjAbmoWN84rgAAPNSAlw=
   </data>
  </layer>
  <layer name="middle" width="19" height="10">
@@ -18,7 +18,7 @@
  </layer>
  <layer name="top" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2DkAQAC+AAB
+   eJxjYBhYkEyi+iwi1aWS6hAag4FyTxIVzSI27IcCAAAdhAJk
   </data>
  </layer>
 </map>

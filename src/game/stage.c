@@ -44,7 +44,7 @@ static void draw_tilemap(int tx, int ty)
             for(x=0; x < map->w; x++)
             {
                 tileid = map->layers[layer] [y*map->w +x];
-                if(tileid > 0)
+                if(tileid > 0 && tileid < 16*6)
                 {
                     tileid --;
                     sx = (tileid % 16) * 16;
