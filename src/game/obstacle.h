@@ -5,14 +5,21 @@
 #define __OBSTACLE__
 
 #include "../engine/sprite.h"
+#include "../engine/vector.h"
+
+#include "stdbool.h"
 
 /// Obstacle object
 typedef struct
 {
     float x; /// X coordinate
     float y; /// Y coordinate
+    VEC2 speed; /// Speed
+    float startY; /// Starting y position
+    float timer; /// Timer for special behavior
     SPRITE spr; /// Sprite
     int id; /// Obstacle id
+    bool show; /// Is the object be drawn
 }
 OBSCTALE;
 
