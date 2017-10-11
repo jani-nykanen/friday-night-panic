@@ -3,8 +3,8 @@
  <properties>
   <property name="name" value="Room 5 - Leave the House"/>
  </properties>
- <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="80">
-  <image source="../bitmaps/tiles.png" width="256" height="80"/>
+ <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="112">
+  <image source="../bitmaps/tiles.png" width="256" height="112"/>
  </tileset>
  <layer name="bottom" width="19" height="10">
   <properties>
@@ -21,7 +21,7 @@
  </layer>
  <layer name="top" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BwA0YgZiJCHRMRmAWIhYAYAAZMACw=
+   eJxjYBj8IJ1OZmVC6UQ0PjlmUQOk4JFLpbHdgwkwAjETEeqYiMAsQCwExADE2wNd
   </data>
  </layer>
 </map>

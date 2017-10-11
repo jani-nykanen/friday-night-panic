@@ -4,6 +4,7 @@ bitmap frame assets/bitmaps/frame.png
 bitmap player assets/bitmaps/player.png
 bitmap tiles assets/bitmaps/tiles.png
 bitmap bg assets/bitmaps/bg.png
+bitmap enemies assets/bitmaps/enemies.png
 bitmap font16 assets/bitmaps/font16.png
 # Tilemaps
 tilemap collisions assets/tilemaps/collisions.tmx

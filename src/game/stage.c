@@ -132,6 +132,47 @@ static void tilemap_collisions(PLAYER* pl, float tm)
     }
 }
 
+/// Parse obstacles from the map
+static void parse_obstacles()
+{
+    const int ids[] =
+    {
+        0,1,6,3,4,2,7,8
+    };
+
+    int  ex = map->w-1;
+    int ey = map->h-1;
+
+    int x = 0;
+    int y = 0;
+    Uint8 tid;
+
+    OBSCTALE o;
+
+    int layer;
+    for(layer=0; layer < map->layerCount; layer ++)
+    {
+        for(y = 0; y <= ey; y++)
+        {
+            for(x = 0; x <= ex; x++)
+            {
+                tid = map->layers[layer] [y*map->w +x];
+
+                if(tid >= 16*6 && tid < 16*6 + 9)
+                {
+                    o = create_obstacle(x*16,y*16,ids[tid-16*6-1]);
+                    push_obstacle(o);
+                }
+                else if(tid == 16*6 + 11)
+                {
+                    o = create_obstacle(x*16,y*16,5);
+                    push_obstacle(o);
+                }
+            }
+        }
+    }
+}
+
 /// Initialize stage
 void init_stage()
 {
@@ -143,6 +184,8 @@ void init_stage()
 
     map = get_tilemap("1");
     col = get_tilemap("collisions");
+
+    parse_obstacles();
 }
 
 /// Update stage
@@ -181,6 +224,8 @@ void stage_get_player_collision(PLAYER* pl, float tm)
         char numString[2];
         sprintf(numString, "%d", mapID);
         map = get_tilemap(numString);
+        clear_obstacles();
+        parse_obstacles();
     }
 }
 

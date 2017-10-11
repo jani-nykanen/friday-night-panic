@@ -3,8 +3,8 @@
  <properties>
   <property name="name" value="Room 13 - Home Sweet"/>
  </properties>
- <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="96">
-  <image source="../bitmaps/tiles.png" width="256" height="96"/>
+ <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="112">
+  <image source="../bitmaps/tiles.png" width="256" height="112"/>
   <tile id="17">
    <properties>
     <property name="name" value="Room 6 - Coming Soon!"/>
@@ -13,7 +13,7 @@
  </tileset>
  <layer name="bottom" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYMANDPDIkQoMsLDJNR9ZnwOFZjrgEaOm/7HZMwoGDgAAdwMCgQ==
+   eJxjYMANDPDIkQKyoWZlo5lLrvkwfSDzHCg00wGPGLX8j8ueUTBwAACKpAPC
   </data>
  </layer>
  <layer name="middle" width="19" height="10">
@@ -23,7 +23,7 @@
  </layer>
  <layer name="top" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFtAQhA+0AOoBgKB1IRTODqGgWNgAAGG8BSw==
+   eJxjYBgFtAQhA+0AOoBgKB1IRTODSFCbhURn4VOIBABQvwKJ
   </data>
  </layer>
 </map>

@@ -5,11 +5,16 @@
 #define __OBJ_CONTROL__
 
 #include "player.h"
+#include "obstacle.h"
 
 #include "../engine/bitmap.h"
 
 /// Init object controller
 void init_object_control();
+
+/// Push a new obstacle to the stack
+/// < o Obstacle
+void push_obstacle(OBSCTALE o);
 
 /// Update object controller
 /// < tm Time mul.

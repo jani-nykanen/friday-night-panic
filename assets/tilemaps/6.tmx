@@ -3,8 +3,8 @@
  <properties>
   <property name="name" value="Room 6 - Garden"/>
  </properties>
- <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="80">
-  <image source="../bitmaps/tiles.png" width="256" height="80"/>
+ <tileset firstgid="1" name="cga_tiles" tilewidth="16" tileheight="16" tilecount="112">
+  <image source="../bitmaps/tiles.png" width="256" height="112"/>
   <tile id="17">
    <properties>
     <property name="name" value="Room 6 - Coming Soon!"/>
@@ -26,7 +26,7 @@
  </layer>
  <layer name="top" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2DkAQAC+AAB
+   eJxjYBhcIJtMuaEOMpHYiVjEyAFZOMwHgTQ89pMLUnHYPRgBANrDBHs=
   </data>
  </layer>
 </map>
