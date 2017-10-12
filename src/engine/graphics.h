@@ -89,4 +89,9 @@ void draw_text(BITMAP* b, Uint8* text, int len, int dx, int dy, int xoff, int yo
 /// < index Color index
 void fill_rect(int x, int y, int w, int h, Uint8 index);
 
+/// Set translation
+/// < x Horizontal
+/// < y Vertical
+void set_translation(int x, int y);
+
 #endif // __GRAPHICS__

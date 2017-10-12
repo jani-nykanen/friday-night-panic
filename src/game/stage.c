@@ -23,6 +23,8 @@ static TILEMAP* col;
 static int mapID;
 /// Water pos
 static float waterPos;
+/// Shake timer
+static float shakeTimer;
 
 /// Draw the current tilemap
 /// < tx X translation
@@ -160,12 +162,12 @@ static void parse_obstacles()
 
                 if(tid >= 16*6 && tid < 16*6 + 9)
                 {
-                    o = create_obstacle(x*16,y*16,ids[tid-16*6-1]);
+                    o = create_obstacle(8+ x*16,8+ y*16,ids[tid-16*6-1]);
                     push_obstacle(o);
                 }
                 else if(tid == 16*6 + 11)
                 {
-                    o = create_obstacle(x*16,y*16,5);
+                    o = create_obstacle(8 + x*16,8 + y*16,5);
                     push_obstacle(o);
                 }
             }
@@ -181,6 +183,7 @@ void init_stage()
 
     mapID = 1;
     waterPos = 0.0f;
+    shakeTimer = 0.0f;
 
     map = get_tilemap("1");
     col = get_tilemap("collisions");
@@ -194,11 +197,21 @@ void stage_update(float tm)
     waterPos -= 0.125f * tm;
     if(waterPos <= -16.0f)
         waterPos += 16.0f;
+
+    if(shakeTimer > 0.0f)
+        shakeTimer -= 1.0f * tm;
+}
+
+/// Shake the stage
+void stage_shake(float t)
+{
+    shakeTimer = t;
 }
 
 /// Get player collision
 void stage_get_player_collision(PLAYER* pl, float tm)
 {
+
     tilemap_collisions(pl,tm);
 
     bool swapMap = false;
@@ -229,9 +242,59 @@ void stage_get_player_collision(PLAYER* pl, float tm)
     }
 }
 
+/// Get obstacle collision
+void stage_get_obs_collision(OBSCTALE* o)
+{
+    int cx = (int)floor(o->x / 16.0f);
+    int cy = (int)floor(o->y / 16.0f);
+
+    int sx = cx - 3;
+    int sy = cy - 3;
+
+    if(sx < 0) sx = 0;
+    if(sy < 0) sy = 0;
+
+    int ex = cx + 3;
+    int ey = cy + 3;
+
+    if(ex >= map->w) ex = map->w-1;
+    if(ey >= map->h) ey = map->h-1;
+
+    int x = 0;
+    int y = 0;
+    int layer = 0;
+    Uint8 tid;
+
+    for(layer=0; layer < map->layerCount; layer ++)
+    {
+        for(y=0; y < map->h; y++)
+        {
+            for(x=0; x < map->w; x++)
+            {
+                tid = map->layers[layer] [y*map->w +x];
+
+                if(tid == 16*6+9)
+                {
+                    obs_swap_dir_horizontal(o,8+ x*16,8+ y*16,16,16);
+                }
+                else if(tid == 16*6+10)
+                {
+                    obs_swap_dir_vertical(o,8+ x*16,8+ y*16,16,16);
+                }
+
+            }
+        }
+    }
+}
+
 /// Draw stage
 void stage_draw()
 {
+    if(shakeTimer > 0.0f)
+    {
+        set_translation(rand() % 5 - 2, rand() % 5 - 2);
+    }
+
     draw_bitmap(bmpBg,8,8,FLIP_NONE);
     draw_tilemap(8,8);
 }
@@ -264,4 +327,10 @@ float get_lowest_solid_y()
 TILEMAP* get_current_map()
 {
     return map;
+}
+
+/// Get map id
+int get_map_id()
+{
+    return mapID;
 }

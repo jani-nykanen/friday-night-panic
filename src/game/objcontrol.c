@@ -58,6 +58,8 @@ void update_obj_control(float tm)
     for(; i < obsCount; i++)
     {
         obs_update(&obstacles[i],tm);
+        obs_on_player_collision(&obstacles[i],&pl);
+        stage_get_obs_collision(&obstacles[i]);
     }
     
     // DEBUG

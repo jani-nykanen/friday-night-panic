@@ -65,8 +65,12 @@ static void game_update(float tm)
 static void game_draw()
 {
     clear_frame(0);
+
+    set_translation(0,0);
     stage_draw();
     draw_objects();
+
+    set_translation(0,0);
     hud_draw();
 }
 

@@ -7,6 +7,8 @@
 #include "../engine/sprite.h"
 #include "../engine/vector.h"
 
+#include "player.h"
+
 #include "stdbool.h"
 
 /// Obstacle object
@@ -20,6 +22,7 @@ typedef struct
     SPRITE spr; /// Sprite
     int id; /// Obstacle id
     bool show; /// Is the object be drawn
+    int dropping; /// If an apple
 }
 OBSCTALE;
 
@@ -35,6 +38,27 @@ void clear_obstacles();
 /// < id Obstacle id
 /// > A new plant
 OBSCTALE create_obstacle(float x, float y, int id);
+
+/// Get player collision
+/// < o Obstacle
+/// < pl Player
+void obs_on_player_collision(OBSCTALE* o, PLAYER* pl);
+
+/// Swap direction collision, horizontal
+/// < o Obstacle
+/// < x X coordinate
+/// < y Y coordinate
+/// < w Width
+/// < h Height
+void obs_swap_dir_horizontal(OBSCTALE* o, float x, float y, float w, float h);
+
+/// Swap direction collision, vertical
+/// < o Obstacle
+/// < x X coordinate
+/// < y Y coordinate
+/// < w Width
+/// < h Height
+void obs_swap_dir_vertical(OBSCTALE* o, float x, float y, float w, float h);
 
 /// Update an obstacle
 /// < o Obstacle to update

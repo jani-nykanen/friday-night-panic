@@ -16,6 +16,11 @@ static FRAME* gframe;
 /// Window dim
 static SDL_Point windowDim;
 
+/// Translate x
+static int transX;
+/// Translate y
+static int transY;
+
 /// Put pixel to the screen
 /// < x X coordinate
 /// < y Y coordinate
@@ -79,6 +84,8 @@ void clear_frame(Uint8 index)
 /// Draw a non-scaled bitmap
 void draw_bitmap(BITMAP* b, int dx, int dy, int flip)
 {
+    dx += transX;
+    dy += transY;
 
     int x; // Screen X
     int y = dy; // Screen Y
@@ -101,6 +108,8 @@ void draw_bitmap(BITMAP* b, int dx, int dy, int flip)
 /// Draw a bitmap region
 void draw_bitmap_region(BITMAP* b, int sx, int sy, int sw, int sh, int dx, int dy, int flip)
 {
+    dx += transX;
+    dy += transY;
 
     int x; // Screen X
     int y = dy; // Screen Y
@@ -152,6 +161,9 @@ void draw_text(BITMAP* b, Uint8* text, int len, int dx, int dy, int xoff, int yo
 /// Fill rectangle
 void fill_rect(int x, int y, int w, int h, Uint8 index)
 {
+    x += transX;
+    y += transY;
+
     int dx = x;
     int dy = y;
 
@@ -162,4 +174,11 @@ void fill_rect(int x, int y, int w, int h, Uint8 index)
             put_pixel(dx,dy,index);
         }
     }
+}
+
+/// Set translation
+void set_translation(int x, int y)
+{
+    transX = x;
+    transY = y;
 }

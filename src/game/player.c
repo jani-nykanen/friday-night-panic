@@ -56,6 +56,8 @@ static void pl_control(PLAYER* pl, float tm)
     }
 
     pl->crouch = (pl->canJump && stick.y > 0.5f);
+
+    pl->dim.y = pl->crouch ? 12.0f : 18.0f;
 }
 
 /// Move player
@@ -165,7 +167,7 @@ static void pl_die(PLAYER* pl, float tm)
             pl->spr.frame = 4;
             pl->spr.row = 1;
 
-            pl->pos.x = 16.0f;
+            pl->pos.x = get_map_id() == 1 ? 32.0f : 16.0f;
             pl->pos.y = 8.0f + get_lowest_solid_y();    
             pl->speed.x = 0.0f;
             pl->speed.y = 0.0f;
@@ -349,11 +351,11 @@ void player_hurt_collision(PLAYER* pl, VEC2 p, VEC2 dim)
 {
     if(pl->dying) return;
 
-    float x = pl->pos.x;
-    float y = pl->pos.y;
-
     float pw = pl->dim.x;
     float ph = pl->dim.y;
+
+    float x = pl->pos.x;
+    float y = pl->pos.y;
 
     if(x+pw >= p.x && x-pw <= p.x+dim.x && y >= p.y && y-ph <= p.y+dim.y)
     {
