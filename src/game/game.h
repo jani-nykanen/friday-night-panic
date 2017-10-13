@@ -6,6 +6,10 @@
 
 #include "../engine/scene.h"
 
+/// Enable game over
+/// < mode Game over! mode (2 for victory)
+void enable_game_over(int mode);
+
 /// Get game scene
 /// > Game scene
 SCENE get_game_scene();

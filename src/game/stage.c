@@ -9,6 +9,8 @@
 #include "../engine/graphics.h"
 
 #include "objcontrol.h"
+#include "status.h"
+#include "game.h"
 
 /// Background image
 static BITMAP* bmpBg;
@@ -211,7 +213,6 @@ void stage_shake(float t)
 /// Get player collision
 void stage_get_player_collision(PLAYER* pl, float tm)
 {
-
     tilemap_collisions(pl,tm);
 
     bool swapMap = false;
@@ -230,6 +231,24 @@ void stage_get_player_collision(PLAYER* pl, float tm)
         swapMap = true;
 
         pl->pos.x += 304;
+    }
+
+    if(mapID == 13 && pl->pos.x > 12*16)
+    {
+        // TODO: Put this to, let's say "player_reset" function   
+        pl->speed.x = 0.0f;
+        pl->speed.y = 0.0f;
+        pl->target.y = 0.0f;
+        pl->target.x = 0.0f;
+        pl->dir = FLIP_NONE;
+        pl->climbing = false;
+        pl->crouch = false;
+
+        pl->pos = pl->startPos;
+        init_global_status();
+        set_starting_map();
+        enable_game_over(2);
+        return;
     }
 
     if(swapMap)
@@ -333,4 +352,15 @@ TILEMAP* get_current_map()
 int get_map_id()
 {
     return mapID;
+}
+
+/// Set the first map
+void set_starting_map()
+{
+    mapID = 1;
+    char numString[2];
+    sprintf(numString, "%d", mapID);
+    map = get_tilemap(numString);
+    clear_obstacles();
+    parse_obstacles();
 }

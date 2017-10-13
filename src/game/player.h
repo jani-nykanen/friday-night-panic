@@ -13,6 +13,7 @@
 typedef struct
 {
     VEC2 pos; /// Position
+    VEC2 startPos; /// Starting position
     VEC2 speed; /// Speed
     VEC2 target; /// Target speed
     VEC2 speedMul; /// Speed multiplier

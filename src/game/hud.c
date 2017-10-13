@@ -23,6 +23,13 @@ static void set_time_string()
 {   
     float gameTime = get_global_status()->time;
 
+    if(gameTime <= 0.0f)
+    {
+        const char* s = "TIME: 0:00";
+        strcpy((char*)timeString,s);
+        return;
+    }
+
     timeString[0] = 'T';
     timeString[1] = 'I';
     timeString[2] = 'M';

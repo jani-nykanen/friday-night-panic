@@ -5,6 +5,7 @@
 
 #include "stage.h"
 #include "status.h"
+#include "game.h"
 
 #include "../vpad.h"
 
@@ -179,6 +180,15 @@ static void pl_die(PLAYER* pl, float tm)
         
             get_global_status()->lives --;
 
+            if(get_global_status()->lives <= 0)
+            {
+                enable_game_over(get_global_status()->lives <= 0 ? 3 : 1);
+                pl->pos = pl->startPos;
+                init_global_status();
+                set_starting_map();
+                
+            }
+
             pl->deathPhase = 2;
         }
     }
@@ -218,6 +228,7 @@ PLAYER create_player(VEC2 pos)
 {
     PLAYER pl;
     pl.pos = pos;
+    pl.startPos = pos;
     pl.speed = vec2(0.0f,0.0f);
     pl.target = pl.speed;
     pl.crouch = false;
@@ -246,6 +257,15 @@ void player_update(PLAYER* pl, float tm)
     {
         pl_control(pl,tm);
         pl_animate(pl,tm);
+    }
+
+    // If no time, die
+    if(!pl->dying && get_global_status()->time <= 0.0f)
+    {
+        get_global_status()->time = 0.0f;
+        get_global_status()->lives = 0;
+        pl_kill(pl);
+        return;
     }
 
     pl_move(pl,tm);

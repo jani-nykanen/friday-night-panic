@@ -44,4 +44,7 @@ TILEMAP* get_current_map();
 /// > Map id
 int get_map_id();
 
+/// Set the first map
+void set_starting_map();
+
 #endif // __STAGE__

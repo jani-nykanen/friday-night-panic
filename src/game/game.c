@@ -16,6 +16,15 @@
 
 #include "../vpad.h"
 
+/// Is the game over
+static int gameOver;
+
+/// Game Over! timer
+static float goverTimer;
+
+/// Game over bitmap
+static BITMAP* bmpGameOver;
+
 /// Init game
 static int game_init()
 {
@@ -37,6 +46,13 @@ static int game_init()
     vpad_add_button(3,(int)SDL_SCANCODE_RETURN,9);
     vpad_add_button(4,(int)SDL_SCANCODE_ESCAPE,8);
 
+    // Set default values of things
+    gameOver = 0;
+    goverTimer = 0.0f;
+
+    // Init bitmaps
+    bmpGameOver = get_bitmap("gameOver");
+
     return 0;
 }
 
@@ -44,13 +60,25 @@ static int game_init()
 /// tm Time multiplier
 static void game_update(float tm)
 {
+    // If game over, update timer and ignore every
+    // else
+    if(gameOver != 0)
+    {
+        goverTimer -= 1.0f * tm;
+        if(goverTimer <= 0.0f)
+        {
+            gameOver = false;
+        }
+        return;
+    }
+
+    get_global_status()->time -= 1.0f * tm;
+
     update_obj_control(tm);
     stage_update(tm);
     hud_update(tm);
 
     vpad_update();
-
-    get_global_status()->time -= 1.0f * tm;
 
     // TEMP, put into another file
     // Palette swap
@@ -64,7 +92,13 @@ static void game_update(float tm)
 /// Draw game
 static void game_draw()
 {
-    clear_frame(0);
+    
+    if(gameOver != 0)
+    {
+        draw_bitmap_region(bmpGameOver,0,32*(gameOver-1),128,32, 160-64,72,0);
+        return;
+    }
+    clear_frame(0);    
 
     set_translation(0,0);
     stage_draw();
@@ -78,6 +112,14 @@ static void game_draw()
 static void game_destroy()
 {
     destroy_assets();
+}
+
+/// Enable game over
+void enable_game_over(int mode)
+{
+    gameOver = mode;
+    goverTimer = 90.0f + ((mode != 1) ? 30.0f : 0.0f);
+    stage_shake(0.0f);
 }
 
 /// Get game scene
