@@ -9,7 +9,7 @@ static STATUS gstat;
 /// Initialize global status
 void init_global_status()
 {
-    gstat.time = 2.5f * 60.0f * 60.0f;
+    gstat.time = 3.0f * 60.0f * 60.0f;
     gstat.lives = 3;
 }
 

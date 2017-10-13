@@ -26,7 +26,6 @@ static void obs_animate(OBSCTALE* o, float tm)
             break;
         }
 
-        
         // Sun & bats & electricity & cats
         case 0:
         case 1:
