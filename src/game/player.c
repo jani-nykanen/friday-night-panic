@@ -182,7 +182,7 @@ static void pl_die(PLAYER* pl, float tm)
 
             if(get_global_status()->lives <= 0)
             {
-                enable_game_over(get_global_status()->lives <= 0 ? 3 : 1);
+                enable_game_over(get_global_status()->time <= 0.0f ? 3 : 1);
                 pl->pos = pl->startPos;
                 init_global_status();
                 set_starting_map();

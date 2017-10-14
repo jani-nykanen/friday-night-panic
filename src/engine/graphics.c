@@ -146,6 +146,11 @@ void draw_text(BITMAP* b, Uint8* text, int len, int dx, int dy, int xoff, int yo
     int sx;
     int sy;
 
+    if(center)
+    {
+        x -= (len+1)/2 * (cw+xoff);
+    }
+
     for(; i < len && text[i] != '\0'; i++)
     {
         c = text[i];

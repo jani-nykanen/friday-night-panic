@@ -123,7 +123,7 @@ void app_toggle_fullscreen()
 
 /// Initialize application
 /// > An error code, 0 on success, 1 on error
-int app_init(SCENE* arrScenes, int count, const char* assPath)
+static int app_init(SCENE* arrScenes, int count, const char* assPath)
 {
     // Init SDL
     if(app_init_SDL() != 0)
@@ -176,7 +176,7 @@ int app_init(SCENE* arrScenes, int count, const char* assPath)
 }
 
 /// Go through events
-void app_events()
+static void app_events()
 {
     SDL_Event event;
 
@@ -234,7 +234,7 @@ void app_events()
 
 /// Update application
 /// < delta Delta time in milliseconds
-void app_update(Uint32 delta)
+static void app_update(Uint32 delta)
 {
     float tm = (float)((float)delta/1000.0f) / (1.0f/60.0f);
     /// Limit tm (in other words, limit minimum fps)
@@ -266,7 +266,7 @@ void app_update(Uint32 delta)
 }
 
 /// Draw application
-void app_draw()
+static void app_draw()
 {
     // Clear to black
     clear(0,0,0);
@@ -288,10 +288,31 @@ void app_draw()
 }
 
 /// Destroy application
-void app_destroy()
+static void app_destroy()
 {
     SDL_DestroyRenderer(rend);
     SDL_DestroyWindow(window);
+}
+
+/// Swap scene
+void app_swap_scene(const char* name)
+{
+    int i = 0;
+    for(; i < sceneCount; i++)
+    {
+        if(strcmp(scenes[i].name,name) == 0)
+        {
+            currentScene = scenes[i];
+            return;
+        }
+    }
+
+}
+
+/// Terminate application
+void app_terminate()
+{
+    isRunning = false;
 }
 
 /// Run application

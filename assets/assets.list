@@ -7,6 +7,7 @@ bitmap bg assets/bitmaps/bg.png
 bitmap enemies assets/bitmaps/enemies.png
 bitmap gameOver assets/bitmaps/gameover.png
 bitmap font16 assets/bitmaps/font16.png
+bitmap hand assets/bitmaps/hand.png
 # Tilemaps
 tilemap collisions assets/tilemaps/collisions.tmx
 tilemap 1 assets/tilemaps/1.tmx

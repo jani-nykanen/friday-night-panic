@@ -3,6 +3,7 @@
 
 #include "game.h"
 
+#include "../engine/app.h"
 #include "../engine/graphics.h"
 #include "../engine/bitmap.h"
 #include "../engine/controls.h"
@@ -15,6 +16,7 @@
 #include "status.h"
 
 #include "../vpad.h"
+#include "../pause.h"
 
 /// Is the game over
 static int gameOver;
@@ -43,8 +45,8 @@ static int game_init()
     vpad_init();
     vpad_add_button(0,(int)SDL_SCANCODE_Z,1);
     vpad_add_button(1,(int)SDL_SCANCODE_X,2);
-    vpad_add_button(3,(int)SDL_SCANCODE_RETURN,9);
-    vpad_add_button(4,(int)SDL_SCANCODE_ESCAPE,8);
+    vpad_add_button(2,(int)SDL_SCANCODE_RETURN,9);
+    vpad_add_button(3,(int)SDL_SCANCODE_ESCAPE,8);
 
     // Set default values of things
     gameOver = 0;
@@ -86,6 +88,18 @@ static void game_update(float tm)
     {
         FRAME* f = get_current_frame();
         frame_swap_cga_palette(f);
+    }
+
+    // Pause & quit
+    if(vpad_get_button(2) == PRESSED)
+    {
+        set_pause_mode(0);
+        app_swap_scene("pause");
+    }
+    else if(vpad_get_button(3) == PRESSED)
+    {
+        set_pause_mode(1);
+        app_swap_scene("pause");
     }
 }
 

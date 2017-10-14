@@ -11,6 +11,13 @@
 /// Toggle fullscreen mode
 void app_toggle_fullscreen();
 
+/// Swap scene
+/// < name The name of the new scene
+void app_swap_scene(const char* name);
+
+/// Terminate application
+void app_terminate();
+
 /// Run application
 /// < arrScenes An array of scenes
 /// < count Amount of elements in the array

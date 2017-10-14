@@ -3,6 +3,7 @@
 
 #include "engine/app.h"
 #include "game/game.h"
+#include "pause.h"
 
 #include "engine/list.h"
 #include "engine/assets.h"
@@ -82,9 +83,10 @@ int main(int argc, char** argv)
 {
     // Set scenes
     SCENE scenes[] = {
-        get_game_scene()
+        get_game_scene(),
+        pause_get_scene()
     };
-    int sceneCount = 1;
+    int sceneCount = 2;
 
     // Load config
     
