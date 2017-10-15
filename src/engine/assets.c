@@ -16,6 +16,7 @@ enum
 {
     T_BITMAP = 0,
     T_TILEMAP = 1,
+    T_SOUND = 2,
 };
 
 /// Asset type
@@ -63,6 +64,11 @@ static int load_from_list()
                 assType = T_TILEMAP;
                 wordIndex = 2;
             }
+            else if(strcmp(get_list_word(i).data,"sound") == 0)
+            {
+                assType = T_SOUND;
+                wordIndex = 2;
+            }
             
         }
         else
@@ -96,6 +102,17 @@ static int load_from_list()
                     case T_TILEMAP:
                     {
                         p = (void*)load_tilemap(path);
+                        if(p == NULL)
+                        {
+                            return 1;
+                        }
+                        success = true;
+                        break;
+                    }
+
+                    case T_SOUND:
+                    {
+                        p = (void*)load_sound(path);
                         if(p == NULL)
                         {
                             return 1;
@@ -152,6 +169,20 @@ BITMAP* get_bitmap(const char* name)
     return NULL;
 }
 
+/// Get sound by name
+SOUND* get_sound(const char* name)
+{
+    int i = 0;
+    for(; i < assCount; i++)
+    {
+        if(assets[i].type == T_SOUND && strcmp(assets[i].name,name) == 0)
+        {
+            return (SOUND*)assets[i].data;
+        }
+    }
+
+    return NULL;
+}
 
 /// Get tilemap by name
 TILEMAP* get_tilemap(const char* name)
@@ -184,6 +215,11 @@ void destroy_assets()
         {
             TILEMAP* t = (TILEMAP*)assets[i].data;
             destroy_tilemap(t);
+        }
+        else if(t == T_SOUND)
+        {
+            SOUND* s = (SOUND*)assets[i].data;
+            destroy_sound(s);
         }
     }
 }

@@ -9,6 +9,7 @@
 #include "../engine/controls.h"
 #include "../engine/assets.h"
 #include "../engine/tilemap.h"
+#include "../engine/audio.h"
 
 #include "objcontrol.h"
 #include "stage.h"
@@ -83,6 +84,7 @@ static void game_update(float tm)
         set_pause_mode(1);
         app_swap_scene("pause");
     }
+
 }
 
 /// Draw game

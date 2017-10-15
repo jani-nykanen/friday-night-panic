@@ -11,6 +11,11 @@
 /// Enemy bitmap
 static BITMAP* bmpEnemies;
 
+/// Jump sound
+static SOUND* sndJump2;
+/// Thwomp sound
+static SOUND* sndThwomp;
+
 /// Animate
 /// < o Obstacle
 /// < tm Time mul.
@@ -51,6 +56,7 @@ static void jump_behavior(OBSCTALE* o, float tm)
     o->timer -= 1.0f * tm;
     if(o->timer <= 0.0f)
     {
+        play_sound(sndJump2,0.5f);
         int ix = (int)floor(o->x / 16);
         o->timer += (ix % 2 == 0) ? 120.0f : 135.0f;
 
@@ -119,6 +125,9 @@ static void apple_behavior(OBSCTALE* o, float tm)
 void init_obstacles()
 {
     bmpEnemies = get_bitmap("enemies");
+
+    sndJump2 = get_sound("jump2");
+    sndThwomp = get_sound("thwomp");
 }
 
 /// Create a new obstacle
@@ -206,6 +215,7 @@ void obs_swap_dir_vertical(OBSCTALE* o, float x, float y, float w, float h)
                 o->dropping = 2;
                 o->speed.y = 0;
                 stage_shake(60.0f);
+                play_sound(sndThwomp,0.60f);
             }
             else if(o->spr.row != 5)
             {

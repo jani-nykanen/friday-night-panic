@@ -15,6 +15,17 @@
 /// Player bitmap
 static BITMAP* bmpPlayer;
 
+/// Jump sound
+static SOUND* sndJump;
+/// Ladder sound
+static SOUND* sndLadder;
+/// Walk sound
+static SOUND* sndWalk;
+/// Hit sound
+static SOUND* sndHit;
+/// Die sound
+static SOUND* sndDie;
+
 /// Control player
 /// < pl Player to control
 /// < tm Time mul.
@@ -48,6 +59,7 @@ static void pl_control(PLAYER* pl, float tm)
 
     if( (pl->canJump || pl->climbing) && vpad_get_button(0) == PRESSED)
     {
+        play_sound(sndJump,0.45f);
         pl->speed.y = -2.5f;
         pl->climbing = false;
     }
@@ -97,6 +109,8 @@ static void pl_move(PLAYER* pl, float tm)
 /// < tm Time mul.
 static void pl_animate(PLAYER* pl, float tm)
 {
+    int frame = pl->spr.frame;
+
     if(pl->climbing)
     {
         float tspeed = hypot(pl->speed.x,pl->speed.y);
@@ -105,6 +119,12 @@ static void pl_animate(PLAYER* pl, float tm)
         {
             spr_animate(&pl->spr,2,0,3,6,tm);
         }
+
+        if(frame != pl->spr.frame && frame % 2 == 0)
+        {
+            play_sound(sndLadder,0.725f);
+        }
+
         return;
     }
 
@@ -138,6 +158,11 @@ static void pl_animate(PLAYER* pl, float tm)
     {
         spr_animate(&pl->spr,0,0,0,0,tm);
     }   
+
+    if(frame != pl->spr.frame && (pl->spr.frame == 3 || pl->spr.frame == 6) )
+    {
+        play_sound(sndWalk,0.725f);
+    }
 }
 
 /// Dying procedures
@@ -217,10 +242,16 @@ static void pl_kill(PLAYER* pl)
     pl->spr.row = 3;
 }
 
-/// Init global player data (read: bitmaps)
+/// Init global player data (mostly read assets)
 void init_player()
 {
     bmpPlayer = get_bitmap("player");
+
+    sndJump = get_sound("jump");
+    sndLadder = get_sound("ladder");
+    sndWalk = get_sound("walk");
+    sndHit = get_sound("hit");
+    sndDie = get_sound("die");
 }
 
 /// Create a player object (mostly set default values)
@@ -328,6 +359,7 @@ void player_get_collision(PLAYER*pl, VEC2 p, float w, bool horizontal, bool dir,
                 if(fabs(pl->speed.x) > 0.15f)
                 {
                     pl->speed.x /= -1.25f;
+                    play_sound(sndHit,0.70f);
                 }
                 else
                 {
@@ -380,6 +412,7 @@ void player_hurt_collision(PLAYER* pl, VEC2 p, VEC2 dim)
     if(x+pw >= p.x && x-pw <= p.x+dim.x && y >= p.y && y-ph <= p.y+dim.y)
     {
         pl_kill(pl);
+        play_sound(sndDie,0.65f);
     }
 }
 

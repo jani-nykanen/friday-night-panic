@@ -91,7 +91,6 @@ int main(int argc, char** argv)
     int sceneCount = 3;
 
     // Load config
-    
     if(read_config("config.list") != 0)
     {
         return 1;

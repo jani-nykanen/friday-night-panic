@@ -8,6 +8,14 @@ bitmap enemies assets/bitmaps/enemies.png
 bitmap gameOver assets/bitmaps/gameover.png
 bitmap font16 assets/bitmaps/font16.png
 bitmap hand assets/bitmaps/hand.png
+# Audio
+sound jump assets/audio/jump.wav
+sound ladder assets/audio/ladder.wav
+sound walk assets/audio/walk.wav
+sound hit assets/audio/hit.wav
+sound die assets/audio/die.wav
+sound jump2 assets/audio/jump2.wav
+sound thwomp assets/audio/thwomp.wav
 # Tilemaps
 tilemap collisions assets/tilemaps/collisions.tmx
 tilemap 1 assets/tilemaps/1.tmx

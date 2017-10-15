@@ -9,6 +9,7 @@
 #include "controls.h"
 #include "graphics.h"
 #include "assets.h"
+#include "audio.h"
 
 /// Is application app_running
 static bool isRunning;
@@ -119,6 +120,12 @@ static int app_init_SDL()
     // Open joystick
     joy = SDL_JoystickOpen(0);
 
+    // Init audio
+    if(audio_init() == 1)
+    {
+        return 1;
+    }
+
     return 0;
 }
 
@@ -135,6 +142,12 @@ static int app_init(SCENE* arrScenes, int count, const char* assPath)
 {
     // Init SDL
     if(app_init_SDL() != 0)
+    {
+        return 1;
+    }
+
+    // Load assets
+    if(load_assets(config.assPath) != 0)
     {
         return 1;
     }
@@ -402,12 +415,6 @@ void app_terminate()
 int app_run(SCENE* arrScenes, int count, CONFIG c)
 {
     config = c;
-
-    // Load assets
-    if(load_assets(c.assPath) != 0)
-    {
-        return 1;
-    }
 
     if(app_init(arrScenes,count,NULL) != 0) return 1;
 
