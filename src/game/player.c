@@ -354,7 +354,7 @@ void player_get_climb_collision(PLAYER* pl, VEC2 p, float l)
         pl->touchLadder = true;
 
         /// @TODO: Delta here
-        if(!pl->climbing && vpad_get_stick().y < -0.25f && vpad_get_delta().y < -0.5f)
+        if(!pl->climbing && vpad_get_stick().y < -0.25f && vpad_get_delta().y < -0.25f)
         {
             pl->climbing = true;
             pl->speed.x = 0.0f;

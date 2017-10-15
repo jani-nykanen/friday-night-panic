@@ -55,7 +55,7 @@ static void draw_quit()
 /// < tm Time mul.
 static void pause_update(float tm)
 {
-    if(vpad_get_button(2) == PRESSED)
+    if(vpad_get_button(2) == PRESSED || (mode == 1 && vpad_get_button(0) == PRESSED))
     {
         if(mode == 0 || handPos == 1)
             app_swap_scene("game");
@@ -72,8 +72,6 @@ static void pause_update(float tm)
 
     if(fabs(vpad_get_stick().x) > 0.1f)
         handPos = vpad_get_stick().x > 0.0f ? 1 : 0;
-
-    vpad_update();
 }
 
 /// Draw pause scene

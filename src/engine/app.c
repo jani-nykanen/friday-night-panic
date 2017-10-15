@@ -36,6 +36,8 @@ static SDL_Point canvasSize;
 
 /// Current scene
 static SCENE currentScene;
+/// Global scene
+static SCENE globalScene;
 /// Scenes
 static SCENE scenes[16];
 /// Scene count
@@ -46,6 +48,9 @@ static int frame_wait;
 
 /// Configuration
 static CONFIG config;
+
+/// Joystick
+static SDL_Joystick* joy;
 
 /// Calculate canvas size and position on screen
 /// < winWidth Window width
@@ -76,7 +81,7 @@ static void app_calc_canvas_prop(int winWidth, int winHeight)
 static int app_init_SDL()
 {   
     // Init
-    if(SDL_Init(SDL_INIT_EVENTS | SDL_INIT_AUDIO | SDL_INIT_VIDEO) != 0)
+    if(SDL_Init(SDL_INIT_EVENTS | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != 0)
     {
         printf("Failed to init SDL!\n");
         return 1;
@@ -110,6 +115,9 @@ static int app_init_SDL()
 
     // Hide mouse cursor
     SDL_ShowCursor(0);
+
+    // Open joystick
+    joy = SDL_JoystickOpen(0);
 
     return 0;
 }
@@ -160,6 +168,11 @@ static int app_init(SCENE* arrScenes, int count, const char* assPath)
             {
                 return 1;
             }
+        }
+
+        if(strcmp(scenes[i].name,"global") == 0)
+        {
+            globalScene = scenes[i];
         }
     }
 
@@ -225,6 +238,65 @@ static void app_events()
             ctr_on_mouse_wheel(event.wheel.y);
             break;
 
+        // Joy button down
+        case SDL_JOYBUTTONDOWN:
+            ctr_on_joy_down(event.jbutton.button);
+            break;
+
+        // Joy button up
+        case SDL_JOYBUTTONUP:
+            ctr_on_joy_up(event.jbutton.button);
+            break;
+
+        // Joy axis
+        case SDL_JOYAXISMOTION:
+        {
+            int axis = 0;
+            if(event.jaxis.axis == 0)
+                axis = 0;
+            else if(event.jaxis.axis == 1)
+                axis = 1;
+            else 
+                break;
+
+            float value = (float)event.jaxis.value / 32767.0f;
+
+            ctr_on_joy_axis(axis,value);
+            
+            break;
+        }
+
+        // Joy hat
+        case SDL_JOYHATMOTION:
+        {
+            int v = event.jhat.value;
+            VEC2 stick = vec2(0.0f,0.0f);
+            if(v == SDL_HAT_LEFTUP || v == SDL_HAT_LEFT || v == SDL_HAT_LEFTDOWN)
+            {
+                stick.x = -1.0f;
+            }
+
+            if(v == SDL_HAT_RIGHTUP || v == SDL_HAT_RIGHT || v == SDL_HAT_RIGHTDOWN)
+            {
+                stick.x = 1.0f;
+            }
+
+            if(v == SDL_HAT_LEFTUP || v == SDL_HAT_UP || v == SDL_HAT_RIGHTUP)
+            {
+                stick.y = -1.0f;
+            }
+
+            if(v == SDL_HAT_LEFTDOWN || v == SDL_HAT_DOWN || v == SDL_HAT_RIGHTDOWN)
+            {
+                stick.y = 1.0f;
+            }
+
+            ctr_on_joy_axis(0,stick.x);
+            ctr_on_joy_axis(1,stick.y);
+
+            break;
+        }
+
         default:
             break;
         }
@@ -256,10 +328,14 @@ static void app_update(Uint32 delta)
         app_toggle_fullscreen();
     }
 
-    // app_update scene
+    // Update current & global scenes
     if(currentScene.on_update != NULL)
     {
         currentScene.on_update(tm);
+    }
+    if(globalScene.on_update != NULL)
+    {
+        globalScene.on_update(tm);
     }
 
     ctr_update();
@@ -271,10 +347,14 @@ static void app_draw()
     // Clear to black
     clear(0,0,0);
 
-    // app_draw scene
+    // Draw global & current scenes
     if(currentScene.on_draw != NULL)
     {
         currentScene.on_draw();
+    }
+    if(globalScene.on_draw != NULL)
+    {
+        globalScene.on_draw();
     }
 
     // Update frame texture
@@ -292,6 +372,8 @@ static void app_destroy()
 {
     SDL_DestroyRenderer(rend);
     SDL_DestroyWindow(window);
+
+    SDL_JoystickClose(joy);
 }
 
 /// Swap scene

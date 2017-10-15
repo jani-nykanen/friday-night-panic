@@ -40,14 +40,6 @@ static int game_init()
     /// Init status
     init_global_status();
 
-    // Init vpad
-    // TODO: Move to somewhere else, maybe?
-    vpad_init();
-    vpad_add_button(0,(int)SDL_SCANCODE_Z,1);
-    vpad_add_button(1,(int)SDL_SCANCODE_X,2);
-    vpad_add_button(2,(int)SDL_SCANCODE_RETURN,9);
-    vpad_add_button(3,(int)SDL_SCANCODE_ESCAPE,8);
-
     // Set default values of things
     gameOver = 0;
     goverTimer = 0.0f;
@@ -79,16 +71,6 @@ static void game_update(float tm)
     update_obj_control(tm);
     stage_update(tm);
     hud_update(tm);
-
-    vpad_update();
-
-    // TEMP, put into another file
-    // Palette swap
-    if(get_key_state((int)SDL_SCANCODE_F2) == PRESSED)
-    {
-        FRAME* f = get_current_frame();
-        frame_swap_cga_palette(f);
-    }
 
     // Pause & quit
     if(vpad_get_button(2) == PRESSED)

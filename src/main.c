@@ -1,10 +1,11 @@
 /// Main file (source)
 /// (c) 2017 Jani Nykänen
 
-#include "engine/app.h"
+#include "global.h"
 #include "game/game.h"
 #include "pause.h"
 
+#include "engine/app.h"
 #include "engine/list.h"
 #include "engine/assets.h"
 
@@ -84,9 +85,10 @@ int main(int argc, char** argv)
     // Set scenes
     SCENE scenes[] = {
         get_game_scene(),
-        pause_get_scene()
+        pause_get_scene(),
+        get_global_scene(),
     };
-    int sceneCount = 2;
+    int sceneCount = 3;
 
     // Load config
     

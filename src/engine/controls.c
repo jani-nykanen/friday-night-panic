@@ -7,15 +7,21 @@
 #define KEYMAX 256
 /// Button max
 #define BUTTONMAX 4
+/// Joystick button max
+#define JOYMAX 12
 
 /// An array of keys
 static STATE keystate[KEYMAX];
 /// An array of mouse buttons
 static STATE mousestate[BUTTONMAX];
+/// Joystick button state
+static STATE joystate[JOYMAX];
 /// Cursor pos
 static SDL_Point mousePos;
 /// Mouse wheel pos
 static int wheel;
+/// Joystick axis
+static VEC2 joyAxis;
 
 /// Init controls
 void ctr_init()
@@ -25,6 +31,10 @@ void ctr_init()
     for(; i < KEYMAX; i++)
     {
         keystate[i] = UP;
+
+        if( i < JOYMAX)
+            joystate[i] = UP;
+
         if( i < BUTTONMAX)
             mousestate[i] = UP;
     }
@@ -32,6 +42,9 @@ void ctr_init()
     wheel = 0;
     mousePos.x = 0;
     mousePos.y = 0;
+
+    joyAxis.x = 0.0f;
+    joyAxis.y = 0.0f;
 }
 
 /// On key down
@@ -89,6 +102,33 @@ void ctr_on_mouse_wheel(int pos)
     wheel = pos;
 }
 
+
+/// Joystick button down
+void ctr_on_joy_down(int button)
+{
+    if(button < 0 || button >= JOYMAX || joystate[button] == DOWN) return;
+
+    joystate[button] = PRESSED;
+}
+
+
+/// Joystick button released
+void ctr_on_joy_up(int button)
+{
+    if(button < 0 || button >= JOYMAX || joystate[button] == UP) return;
+    
+    joystate[button] = RELEASED;
+}
+
+/// Joystick axis movement
+void ctr_on_joy_axis(int axis, float value)
+{
+    if(axis == 0)
+        joyAxis.x = value;
+    else if(axis == 1)
+        joyAxis.y = value;
+}
+
 /// Update
 void ctr_update()
 {
@@ -116,6 +156,15 @@ void ctr_update()
             else if(mousestate[i] == PRESSED)
                 mousestate[i] = DOWN;
         }
+
+        if(i < JOYMAX)
+        {
+            if(joystate[i] == RELEASED)
+            joystate[i] = UP;
+
+            else if(joystate[i] == PRESSED)
+                joystate[i] = DOWN;
+        }
     }
 }
 
@@ -137,6 +186,15 @@ STATE get_mouse_button_state(int button)
     return mousestate[button];
 }
 
+/// Get joystick button state
+STATE get_joy_button_state(int button)
+{
+    if(button < 0 || button >= JOYMAX) 
+        return UP;
+
+    return joystate[button];
+}
+
 /// Get mouse pos
 SDL_Point get_cursor_pos()
 {
@@ -147,4 +205,11 @@ SDL_Point get_cursor_pos()
 int get_mouse_wheel()
 {
     return wheel;
+}
+
+/// Get joystick axes
+/// > Axes
+VEC2 get_joy_axes()
+{
+    return joyAxis;
 }

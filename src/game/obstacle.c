@@ -52,13 +52,13 @@ static void jump_behavior(OBSCTALE* o, float tm)
     if(o->timer <= 0.0f)
     {
         int ix = (int)floor(o->x / 16);
-        o->timer = ix % 2 == 0 ? 120.0f : 135.0f;
+        o->timer += (ix % 2 == 0) ? 120.0f : 135.0f;
 
         o->speed.y = ix % 2 == 0 ? -2.5f : -2.75f;
     }
 
     o->speed.y += 0.0625f * tm;
-    if(o->y > o->startY)
+    if(o->y > o->startY && o->speed.y >= 0.0f)
     {
         o->speed.y = 0.0f;
         o->y = o->startY;

@@ -53,6 +53,13 @@ void vpad_update()
         stick.y = 1.0f;
     }
 
+    VEC2 jstick = get_joy_axes();
+    if(hypot(jstick.x,jstick.y) > 0.1f)
+    {
+        stick.x = jstick.x;
+        stick.y = jstick.y;
+    }
+
     delta.x = stick.x - oldStick.x;
     delta.y = stick.y - oldStick.y;
 }
@@ -78,5 +85,11 @@ void vpad_add_button(Uint8 index, int scancode, int joybutton)
 /// Get virtual pad button state
 int vpad_get_button(Uint8 index)
 {
-    return get_key_state(buttons[index].scancode);
+    int ret = get_key_state(buttons[index].scancode);;
+    if(ret == UP)
+    {
+        ret = get_joy_button_state(buttons[index].joybutton);
+    }
+
+    return ret;
 }

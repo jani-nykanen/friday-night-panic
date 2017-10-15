@@ -8,7 +8,7 @@
  </tileset>
  <layer name="bottom" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYCAdGFBR/Ugwy4GKZiEDdiLUEGs3Ox7zWLGIceJRwwjETFCMDkSxiEmi6VFFkhMEYiEoFkPDuMxC1iOMwywA0mAD7g==
+   eJxjYCAdGFBR/Ugwy4GKZiEDdiBOIaCGWLvZoRgbYMUixolHDSMQM0ExOhDFIiaJpkcVSU4QiIWgWAwN4zILWY8wDrMATE8EUg==
   </data>
  </layer>
  <layer name="middle" width="19" height="10">
@@ -18,7 +18,7 @@
  </layer>
  <layer name="top" width="19" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYECALAbqgmwqm4fPfdS2ixSQhEcuFY2fQkuHQAHMPdSIzywqmUOKffQAANB9BOA=
+   eJxjYECALAbqgmwqm4fPfdS2ixSQhEculW6uQACYe6gRn1lUMocU++gBADddBHw=
   </data>
  </layer>
 </map>
