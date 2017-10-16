@@ -81,8 +81,12 @@ static void jump_behavior(OBSCTALE* o, float tm)
 /// < tm Time mul.
 static void electricity_behavior(OBSCTALE* o, float tm)
 {
+    o->playZap = false;
     o->timer += 1.0f * tm;
+    bool s = o->show;
     o->show = o->timer <= 120.0f;
+    if(s != o->show)
+        o->playZap = true;
 
     if(o->timer >= 240.0)
     {
@@ -159,6 +163,7 @@ OBSCTALE create_obstacle(float x, float y, int id)
     {
         o.timer = 60.0f;
     }
+    o.playZap = false;
 
     o.spr = create_sprite(24,24);
     o.spr.row = id;

@@ -91,6 +91,12 @@ void play_sound(SOUND* s, float vol)
     }
 }
 
+/// Stop all audio tracks
+void stop_all_audio()
+{
+    Mix_HaltChannel(-1);
+}
+
 /// Destroy sound & free memory
 void destroy_sound(SOUND* s)
 {

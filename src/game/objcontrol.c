@@ -19,6 +19,9 @@ static Uint16 obsCount;
 /// Obstacles
 static OBSCTALE obstacles[NUM_OBJ];
 
+/// Zap sound
+static SOUND* sndZap;
+
 /// Push a new obstacle to the stack
 void push_obstacle(OBSCTALE o)
 {
@@ -44,6 +47,9 @@ void init_object_control()
 
     // Set default values
     obsCount = 0;
+
+    // Init assets
+    sndZap = get_sound("electricity");
 }
 
 /// Update object controller
@@ -54,14 +60,23 @@ void update_obj_control(float tm)
     stage_get_player_collision(&pl,tm);
 
     // Update obstacles
+    bool playZap = false;
     int i = 0;
     for(; i < obsCount; i++)
     {
         obs_update(&obstacles[i],tm);
         obs_on_player_collision(&obstacles[i],&pl);
         stage_get_obs_collision(&obstacles[i]);
+
+        if(obstacles[i].playZap)
+            playZap = true;
     }
     
+    if(playZap)
+    {
+        play_sound(sndZap,0.4f);
+    }
+
     // DEBUG
     if(get_key_state((int)SDL_SCANCODE_PAGEUP) == PRESSED)
     {

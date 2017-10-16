@@ -22,6 +22,7 @@ typedef struct
     SPRITE spr; /// Sprite
     int id; /// Obstacle id
     bool show; /// Is the object be drawn
+    bool playZap; /// Play zap
     int dropping; /// If an apple
 }
 OBSCTALE;

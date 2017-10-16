@@ -25,6 +25,8 @@ static SOUND* sndWalk;
 static SOUND* sndHit;
 /// Die sound
 static SOUND* sndDie;
+/// Spawn sound
+static SOUND* sndSpawn;
 
 /// Control player
 /// < pl Player to control
@@ -172,7 +174,7 @@ static void pl_die(PLAYER* pl, float tm)
 {
     if(pl->deathPhase != 2)
     {
-        pl->target.y = 3.0f;
+        pl->target.y = 2.0f;
         pl->speed.x = 0.0f;
         pl->target.x = 0.0f;
     }
@@ -213,13 +215,17 @@ static void pl_die(PLAYER* pl, float tm)
                 set_starting_map();
                 
             }
+            else
+            {
+                play_sound(sndSpawn,0.70f);
+            }
 
             pl->deathPhase = 2;
         }
     }
     else if(pl->deathPhase == 2)
     {
-        spr_animate(&pl->spr,1,4,8,5,tm);
+        spr_animate(&pl->spr,1,4,8,6,tm);
         if(pl->spr.frame == 8)
         {
             pl->dying = false;
@@ -235,7 +241,7 @@ static void pl_die(PLAYER* pl, float tm)
 static void pl_kill(PLAYER* pl)
 {
     pl->dying = true;
-    pl->speed.y = -2.25f;
+    pl->speed.y = -2.5f;
     pl->deathPhase = 0;
     pl->spr.count = 0.0f;
     pl->spr.frame = 3;
@@ -252,6 +258,7 @@ void init_player()
     sndWalk = get_sound("walk");
     sndHit = get_sound("hit");
     sndDie = get_sound("die");
+    sndSpawn = get_sound("spawn");
 }
 
 /// Create a player object (mostly set default values)
@@ -268,7 +275,8 @@ PLAYER create_player(VEC2 pos)
     pl.canJump = false;
     pl.climbing = false;
     pl.dying = false;
-    pl.deathPhase = 0;
+    pl.deathPhase = 2;
+    pl.dying = true;
     pl.spr = create_sprite(32,32);
     pl.dir = 0;
     pl.dim = vec2(4.0f,18.0f);

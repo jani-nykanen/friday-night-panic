@@ -27,6 +27,12 @@ static float goverTimer;
 
 /// Game over bitmap
 static BITMAP* bmpGameOver;
+/// Game over music
+static SOUND* sndGameOver;
+/// Victory music
+static SOUND* sndVictory;
+/// Start music
+static SOUND* sndStart;
 
 /// Init game
 static int game_init()
@@ -45,8 +51,14 @@ static int game_init()
     gameOver = 0;
     goverTimer = 0.0f;
 
-    // Init bitmaps
+    // Init bitmaps & audio
     bmpGameOver = get_bitmap("gameOver");
+    sndGameOver = get_sound("gameover");
+    sndVictory = get_sound("victory");
+    sndStart = get_sound("start");
+
+    // TEMP
+    play_sound(sndStart,0.65f);
 
     return 0;
 }
@@ -63,6 +75,7 @@ static void game_update(float tm)
         if(goverTimer <= 0.0f)
         {
             gameOver = false;
+            play_sound(sndStart,0.65f);
         }
         return;
     }
@@ -116,8 +129,10 @@ static void game_destroy()
 void enable_game_over(int mode)
 {
     gameOver = mode;
-    goverTimer = 90.0f + ((mode != 1) ? 30.0f : 0.0f);
+    goverTimer = 90.0f + ((mode != 1) ? 60.0f : 30.0f);
     stage_shake(0.0f);
+
+    play_sound(mode != 2 ? sndGameOver : sndVictory,0.70f);
 }
 
 /// Get game scene

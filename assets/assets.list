@@ -14,8 +14,13 @@ sound ladder assets/audio/ladder.wav
 sound walk assets/audio/walk.wav
 sound hit assets/audio/hit.wav
 sound die assets/audio/die.wav
+sound spawn assets/audio/spawn.wav
 sound jump2 assets/audio/jump2.wav
 sound thwomp assets/audio/thwomp.wav
+sound electricity assets/audio/electricity.wav
+sound gameover assets/audio/gameover.ogg
+sound victory assets/audio/victory.ogg
+sound start assets/audio/start.ogg
 # Tilemaps
 tilemap collisions assets/tilemaps/collisions.tmx
 tilemap 1 assets/tilemaps/1.tmx

@@ -36,6 +36,9 @@ SOUND* load_sound(const char* path);
 /// < vol Volume
 void play_sound(SOUND* s, float vol);
 
+/// Stop all audio tracks
+void stop_all_audio();
+
 /// Destroy sound & free memory
 /// < s Sound to destroy
 void destroy_sound(SOUND* s);
