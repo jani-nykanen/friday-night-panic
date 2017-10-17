@@ -18,6 +18,10 @@ sound spawn assets/audio/spawn.wav
 sound jump2 assets/audio/jump2.wav
 sound thwomp assets/audio/thwomp.wav
 sound electricity assets/audio/electricity.wav
+sound duck assets/audio/duck.wav
+sound pause assets/audio/pause.wav
+sound accept assets/audio/accept.wav
+sound select assets/audio/select.wav
 sound gameover assets/audio/gameover.ogg
 sound victory assets/audio/victory.ogg
 sound start assets/audio/start.ogg

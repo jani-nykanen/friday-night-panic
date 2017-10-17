@@ -13,6 +13,12 @@
 static BITMAP* bmpFont;
 /// Hand bitmap
 static BITMAP* bmpHand;
+/// Pause sound
+static SOUND* sndPause;
+/// Select sound
+static SOUND* sndSelect;
+/// Accept sound
+static SOUND* sndAccept;
 
 /// Pause mode
 static int mode;
@@ -24,6 +30,10 @@ static int pause_init()
 {
     bmpFont = get_bitmap("font16");
     bmpHand = get_bitmap("hand");
+    sndPause = get_sound("pause");
+    sndSelect = get_sound("select");
+    sndAccept = get_sound("accept");
+
     mode = 0;
     handPos = 1;
 
@@ -58,20 +68,30 @@ static void pause_update(float tm)
     if(vpad_get_button(2) == PRESSED || (mode == 1 && vpad_get_button(0) == PRESSED))
     {
         if(mode == 0 || handPos == 1)
+        {
             app_swap_scene("game");
+            play_sound(mode == 0 ? sndPause : sndAccept,0.60f);
+        }
         else
         {
+            play_sound(sndAccept,0.60f);
             app_terminate();
         }
     }
 
     if(vpad_get_button(3) == PRESSED)
     {
+        play_sound(sndPause,0.60f);
         app_swap_scene("game");
     }
 
+    int hpos = handPos;
+
     if(fabs(vpad_get_stick().x) > 0.1f)
         handPos = vpad_get_stick().x > 0.0f ? 1 : 0;
+
+    if(hpos != handPos)
+        play_sound(sndSelect,0.50f);
 }
 
 /// Draw pause scene

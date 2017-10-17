@@ -33,6 +33,8 @@ static SOUND* sndGameOver;
 static SOUND* sndVictory;
 /// Start music
 static SOUND* sndStart;
+/// Pause sound
+static SOUND* sndPause;
 
 /// Init game
 static int game_init()
@@ -56,6 +58,7 @@ static int game_init()
     sndGameOver = get_sound("gameover");
     sndVictory = get_sound("victory");
     sndStart = get_sound("start");
+    sndPause = get_sound("pause");
 
     // TEMP
     play_sound(sndStart,0.65f);
@@ -89,11 +92,13 @@ static void game_update(float tm)
     // Pause & quit
     if(vpad_get_button(2) == PRESSED)
     {
+        play_sound(sndPause,0.60f);
         set_pause_mode(0);
         app_swap_scene("pause");
     }
     else if(vpad_get_button(3) == PRESSED)
     {
+        play_sound(sndPause,0.60f);
         set_pause_mode(1);
         app_swap_scene("pause");
     }

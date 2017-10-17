@@ -27,6 +27,8 @@ static SOUND* sndHit;
 static SOUND* sndDie;
 /// Spawn sound
 static SOUND* sndSpawn;
+/// Duck sound
+static SOUND* sndDuck;
 
 /// Control player
 /// < pl Player to control
@@ -70,7 +72,10 @@ static void pl_control(PLAYER* pl, float tm)
         pl->speed.y /= 2.0f;
     }
 
+    bool d = pl->crouch;
     pl->crouch = (pl->canJump && stick.y > 0.5f);
+    if(d != pl->crouch && pl->crouch)
+        play_sound(sndDuck,0.40f);
 
     pl->dim.y = pl->crouch ? 12.0f : 18.0f;
 }
@@ -259,6 +264,7 @@ void init_player()
     sndHit = get_sound("hit");
     sndDie = get_sound("die");
     sndSpawn = get_sound("spawn");
+    sndDuck = get_sound("duck");
 }
 
 /// Create a player object (mostly set default values)
