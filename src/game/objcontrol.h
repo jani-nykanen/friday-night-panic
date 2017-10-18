@@ -23,4 +23,7 @@ void update_obj_control(float tm);
 /// Draw object controller objects
 void draw_objects();
 
+/// Reset object control
+void reset_obj_control();
+
 #endif // __OBJ_CONTROL__

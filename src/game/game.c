@@ -60,9 +60,6 @@ static int game_init()
     sndStart = get_sound("start");
     sndPause = get_sound("pause");
 
-    // TEMP
-    play_sound(sndStart,0.65f);
-
     return 0;
 }
 
@@ -70,6 +67,12 @@ static int game_init()
 /// tm Time multiplier
 static void game_update(float tm)
 {
+    hud_update(tm);
+
+    // If dark, skip events
+    if(hud_get_dark_timer() > 0.0f)
+        return;
+
     // If game over, update timer and ignore every
     // else
     if(gameOver != 0)
@@ -87,7 +90,6 @@ static void game_update(float tm)
 
     update_obj_control(tm);
     stage_update(tm);
-    hud_update(tm);
 
     // Pause & quit
     if(vpad_get_button(2) == PRESSED)
@@ -101,6 +103,12 @@ static void game_update(float tm)
         play_sound(sndPause,0.60f);
         set_pause_mode(1);
         app_swap_scene("pause");
+    }
+
+    // TEMP
+    if(get_key_state((int)SDL_SCANCODE_P) == PRESSED)
+    {
+        app_swap_scene("title");
     }
 
 }
@@ -138,6 +146,14 @@ void enable_game_over(int mode)
     stage_shake(0.0f);
 
     play_sound(mode != 2 ? sndGameOver : sndVictory,0.70f);
+}
+
+/// Reset game
+void game_reset()
+{
+    play_sound(sndStart,0.65f);
+    reset_obj_control();
+    hud_reset_dark_timer();
 }
 
 /// Get game scene

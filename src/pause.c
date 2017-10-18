@@ -75,7 +75,7 @@ static void pause_update(float tm)
         else
         {
             play_sound(sndAccept,0.60f);
-            app_terminate();
+            app_swap_scene("title");
         }
     }
 

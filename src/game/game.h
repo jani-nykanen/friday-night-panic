@@ -10,6 +10,9 @@
 /// < mode Game over! mode (2 for victory)
 void enable_game_over(int mode);
 
+/// Reset game
+void game_reset();
+
 /// Get game scene
 /// > Game scene
 SCENE get_game_scene();

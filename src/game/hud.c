@@ -17,6 +17,8 @@ static BITMAP* bmpFrame;
 
 /// Time string
 static Uint8 timeString[16];
+/// Darkness timer
+static float darkTimer;
 
 /// Set time string
 static void set_time_string()
@@ -93,12 +95,26 @@ void init_hud()
 {
     bmpFrame = get_bitmap("frame");
     bmpFont = get_bitmap("font16");
+    darkTimer = 60.0f;
 }
 
 /// Update HUD
 void hud_update(float tm)
 {
-    
+    if(darkTimer > 0.0f)
+        darkTimer -= 1.0f * tm;
+}
+
+/// Return the dark timer
+float hud_get_dark_timer()
+{
+    return darkTimer;
+}
+
+/// Reset dark timer
+void hud_reset_dark_timer()
+{
+    darkTimer = 60.0f;
 }
 
 /// Draw HUD
@@ -106,4 +122,12 @@ void hud_draw()
 {
     draw_frame();
     draw_hud_text();
+
+    // Draw darkess
+    if(darkTimer > 0.0f)
+    {
+        int pos = (int)(100.0f / 60.0f * darkTimer);
+        fill_rect(0,0,320,pos,0);
+        fill_rect(0,200-pos,320,pos,0);
+    }
 }

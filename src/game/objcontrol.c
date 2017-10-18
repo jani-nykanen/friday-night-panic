@@ -101,3 +101,9 @@ void draw_objects()
     // Draw player
     player_draw(&pl);
 }
+
+/// Reset object control
+void reset_obj_control()
+{
+    player_reset(&pl);
+}

@@ -215,10 +215,7 @@ static void pl_die(PLAYER* pl, float tm)
             if(get_global_status()->lives <= 0)
             {
                 enable_game_over(get_global_status()->time <= 0.0f ? 3 : 1);
-                pl->pos = pl->startPos;
-                init_global_status();
-                set_starting_map();
-                
+                player_reset(pl);
             }
             else
             {
@@ -289,6 +286,28 @@ PLAYER create_player(VEC2 pos)
     pl.touchLadder = false;
 
     return pl;
+}
+
+/// Reset player
+void player_reset(PLAYER* pl)
+{
+    pl->spr.frame = 4;
+    pl->spr.row = 1;
+
+    pl->pos.x = get_map_id() == 1 ? 32.0f : 16.0f;
+    pl->pos.y = 8.0f + get_lowest_solid_y();    
+    pl->speed.x = 0.0f;
+    pl->speed.y = 0.0f;
+    pl->target.y = 0.0f;
+    pl->target.x = 0.0f;
+    pl->dir = FLIP_NONE;
+    pl->climbing = false;
+    pl->crouch = false;
+    pl->dying = false;
+
+    pl->pos = pl->startPos;
+    init_global_status();
+    set_starting_map();
 }
 
 /// Update player

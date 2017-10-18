@@ -11,6 +11,12 @@ void init_hud();
 /// < tm Time mul.
 void hud_update(float tm);
 
+/// Return the dark timer
+float hud_get_dark_timer();
+
+/// Reset dark timer
+void hud_reset_dark_timer();
+
 /// Draw HUD
 void hud_draw();
 

@@ -8,6 +8,7 @@ bitmap enemies assets/bitmaps/enemies.png
 bitmap gameOver assets/bitmaps/gameover.png
 bitmap font16 assets/bitmaps/font16.png
 bitmap hand assets/bitmaps/hand.png
+bitmap logo assets/bitmaps/logo.png
 # Audio
 sound jump assets/audio/jump.wav
 sound ladder assets/audio/ladder.wav
@@ -25,6 +26,7 @@ sound select assets/audio/select.wav
 sound gameover assets/audio/gameover.ogg
 sound victory assets/audio/victory.ogg
 sound start assets/audio/start.ogg
+sound begin assets/audio/beginning.ogg
 # Tilemaps
 tilemap collisions assets/tilemaps/collisions.tmx
 tilemap 1 assets/tilemaps/1.tmx

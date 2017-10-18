@@ -37,6 +37,10 @@ void init_player();
 /// > A player object
 PLAYER create_player(VEC2 pos);
 
+/// Reset player
+/// < pl Player to reset
+void player_reset(PLAYER* pl);
+
 /// Update player
 /// < pl Player to update
 /// < tm Time multiplier
