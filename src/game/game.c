@@ -80,8 +80,16 @@ static void game_update(float tm)
         goverTimer -= 1.0f * tm;
         if(goverTimer <= 0.0f)
         {
+            if(gameOver == 2)
+            {
+                app_swap_scene("title");
+            }
+            else
+            {
+                play_sound(sndStart,0.65f);
+            }
             gameOver = false;
-            play_sound(sndStart,0.65f);
+            
         }
         return;
     }

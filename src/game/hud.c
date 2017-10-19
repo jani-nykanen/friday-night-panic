@@ -83,7 +83,10 @@ static void draw_hud_text()
     draw_text(bmpFont,timeString,16,2,186,-7,0,false);
 
     int i = 0;
-    for(; i < get_global_status()->lives; i++)
+    // For testing, if I want to have more lives
+    int lives = get_global_status()->lives;
+    if(lives > 3) lives = 3;
+    for(; i < lives; i++)
     {
         draw_text(bmpFont,(Uint8*)"* ",32,320-64 + i*18,186,-7,0,false);
     }

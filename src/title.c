@@ -37,11 +37,17 @@ static bool released;
 /// < y Y coordinate
 static void draw_text_content(int x, int y)
 {
+    FRAME* f = get_current_frame();
+
     // Draw menu options
     draw_text(bmpFont,(Uint8*)"PLAY GAME",11,x,y,-7,0,true);
     draw_text(bmpFont,(Uint8*)"FULL SCREEN",11,x,y+14,-7,0,true);
-    draw_text(bmpFont,(Uint8*)"AUDIO: ON",11,x,y+28,-7,0,true);
-    draw_text(bmpFont,(Uint8*)"PALETTE: 1",11,x,y+42,-7,0,true);
+    draw_text(bmpFont,
+        is_audio_enabled() ? (Uint8*)"AUDIO: ON" : (Uint8*)"AUDIO: OFF",
+        11,x,y+28,-7,0,true);
+    draw_text(bmpFont,
+        (f->palette[0b00110101*3+2] == 85) ? (Uint8*)"PALETTE: 1" : (Uint8*)"PALETTE: 2",
+        11,x,y+42,-7,0,true);
     draw_text(bmpFont,(Uint8*)"QUIT GAME",11,x,y+56,-7,0,true);
 
     // Draw hand cursor
@@ -54,7 +60,6 @@ static void draw_text_content(int x, int y)
 /// Take action
 static void take_action()
 {
-    play_sound(sndAccept,0.60f);
 
     switch(handPos)
     {
@@ -70,6 +75,7 @@ static void take_action()
 
     case 2:
         // Toggle audio
+        enable_audio(!is_audio_enabled());
         break;
 
     case 3:
@@ -83,6 +89,8 @@ static void take_action()
     default:
         break;
     }
+
+    play_sound(sndAccept,0.50f);
 }
 
 /// Init pause scene
@@ -113,7 +121,7 @@ static void title_update(float tm)
     if(timer >= 60.0f)
     {
         if(phase == 0)
-            play_sound(sndBegin,0.60f);
+            play_sound(sndBegin,0.50f);
             
         if(phase == 3)
         {
@@ -128,7 +136,7 @@ static void title_update(float tm)
         timer -= 60.0f;
     }
 
-    if(phase >= 2)
+    if(phase == 2)
     {
         int hpos = handPos;
 

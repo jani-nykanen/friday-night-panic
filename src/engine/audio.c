@@ -7,6 +7,8 @@
 
 /// Global volume
 static float globalSoundVol;
+/// Is audio enabled
+static bool audioEnable;
 
 /// Init audio
 int audio_init()
@@ -29,6 +31,7 @@ int audio_init()
 
     // Set default values
     globalSoundVol = 1.0f;
+    audioEnable = true;
 
     return 0;
 }
@@ -37,6 +40,22 @@ int audio_init()
 void set_global_sound_volume(float vol)
 {
     globalSoundVol = vol;
+}
+
+/// Enable audio
+void enable_audio(bool state)
+{
+    audioEnable = state;
+    if(!state)
+        stop_all_audio();
+}
+
+
+/// Is the audio enabled
+/// > True, if enabled
+bool is_audio_enabled()
+{
+    return audioEnable;
 }
 
 /// Load a sound
@@ -69,7 +88,7 @@ SOUND* load_sound(const char* path)
 /// Play sound
 void play_sound(SOUND* s, float vol)
 {
-    if(s == NULL) return;
+    if(s == NULL || !audioEnable) return;
 
     if(!s->played)
     {

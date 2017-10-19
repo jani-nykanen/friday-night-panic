@@ -303,7 +303,7 @@ void player_reset(PLAYER* pl)
     pl->dir = FLIP_NONE;
     pl->climbing = false;
     pl->crouch = false;
-    pl->dying = false;
+    pl->deathPhase = 2;
 
     pl->pos = pl->startPos;
     init_global_status();

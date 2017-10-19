@@ -26,6 +26,14 @@ int audio_init();
 /// < vol Volume
 void set_global_sound_volume(float vol);
 
+/// Enable audio
+/// < state Audio state
+void enable_audio(bool state);
+
+/// Is the audio enabled
+/// > True, if enabled
+bool is_audio_enabled();
+
 /// Load a sound
 /// < path Path
 /// > A new sound

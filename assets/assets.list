@@ -9,6 +9,7 @@ bitmap gameOver assets/bitmaps/gameover.png
 bitmap font16 assets/bitmaps/font16.png
 bitmap hand assets/bitmaps/hand.png
 bitmap logo assets/bitmaps/logo.png
+bitmap avatar assets/bitmaps/avatar.png
 # Audio
 sound jump assets/audio/jump.wav
 sound ladder assets/audio/ladder.wav
@@ -23,6 +24,7 @@ sound duck assets/audio/duck.wav
 sound pause assets/audio/pause.wav
 sound accept assets/audio/accept.wav
 sound select assets/audio/select.wav
+sound bling assets/audio/bling.wav
 sound gameover assets/audio/gameover.ogg
 sound victory assets/audio/victory.ogg
 sound start assets/audio/start.ogg

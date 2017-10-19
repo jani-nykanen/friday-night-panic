@@ -54,7 +54,7 @@ TILEMAP* load_tilemap(const char* path)
     int i = 0;
     while (map->ly_head) 
     {
-        t->layers[l] = (short*)malloc(sizeof(short) * t->w * t->h);
+        t->layers[l] = (Uint8*)malloc(sizeof(Uint8) * t->w * t->h);
         if(t->layers[l] == NULL)
         {
             tmx_map_free(map);
