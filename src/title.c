@@ -10,6 +10,11 @@
 #include "vpad.h"
 #include "game/game.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Logo bitmap
 static BITMAP* bmpLogo;
 /// Bitmap font
@@ -140,7 +145,7 @@ static void title_update(float tm)
     {
         int hpos = handPos;
 
-        if(vpad_get_button(0) == PRESSED || vpad_get_button(2) == PRESSED)
+        if((vpad_get_button(0) == PRESSED || vpad_get_button(1) == PRESSED) || vpad_get_button(2) == PRESSED)
         {
             take_action();
             return;

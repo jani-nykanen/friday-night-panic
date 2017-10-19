@@ -5,6 +5,11 @@
 #include "bitmap.h"
 #include "graphics.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Load bitmap
 BITMAP* load_bitmap(const char* path)
 {

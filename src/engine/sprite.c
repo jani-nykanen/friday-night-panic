@@ -5,6 +5,11 @@
 
 #include "graphics.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Create a new sprite
 SPRITE create_sprite(int w, int h)
 {

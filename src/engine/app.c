@@ -11,6 +11,10 @@
 #include "assets.h"
 #include "audio.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
 /// Is application app_running
 static bool isRunning;
 /// Is full screen

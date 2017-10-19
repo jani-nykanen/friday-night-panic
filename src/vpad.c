@@ -3,6 +3,11 @@
 
 #include "vpad.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Button object
 typedef struct
 {

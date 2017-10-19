@@ -3,6 +3,11 @@
 
 #include "status.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Global status
 static STATUS gstat; 
 

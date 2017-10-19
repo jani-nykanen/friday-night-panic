@@ -10,6 +10,11 @@
 #include "../engine/tilemap.h"
 #include "../engine/graphics.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Font bitmap
 static BITMAP* bmpFont;
 /// Frame bitmap

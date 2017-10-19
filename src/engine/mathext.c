@@ -3,6 +3,11 @@
 
 #include "mathext.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Max float
 float maxf(float a, float b)
 {

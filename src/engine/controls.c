@@ -3,6 +3,11 @@
 
 #include "controls.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Amount of keys
 #define KEYMAX 256
 /// Button max

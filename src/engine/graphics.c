@@ -5,6 +5,10 @@
 #include "mathext.h"
 
 #include "malloc.h"
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
 
 /// Min delta
 static const float DEPTH_MIN = 0.025f;

@@ -6,6 +6,11 @@
 #include "stdio.h"
 #include "malloc.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Create palette lookup table
 /// < fr Frame
 void fr_gen_palette(FRAME* fr)

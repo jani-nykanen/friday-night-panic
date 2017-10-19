@@ -12,6 +12,11 @@
 #include "status.h"
 #include "game.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Background image
 static BITMAP* bmpBg;
 /// Tiles

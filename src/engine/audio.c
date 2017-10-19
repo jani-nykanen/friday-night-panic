@@ -3,7 +3,10 @@
 
 #include "audio.h"
 
+#include "stdlib.h"
+#include "math.h"
 #include "stdio.h"
+
 
 /// Global volume
 static float globalSoundVol;

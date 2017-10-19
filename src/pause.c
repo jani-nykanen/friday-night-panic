@@ -9,6 +9,10 @@
 
 #include "vpad.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
 /// Font bitmap
 static BITMAP* bmpFont;
 /// Hand bitmap
@@ -65,7 +69,7 @@ static void draw_quit()
 /// < tm Time mul.
 static void pause_update(float tm)
 {
-    if(vpad_get_button(2) == PRESSED || (mode == 1 && vpad_get_button(0) == PRESSED))
+    if(vpad_get_button(2) == PRESSED || (mode == 1 && (vpad_get_button(0) == PRESSED || vpad_get_button(1) == PRESSED)))
     {
         if(mode == 0 || handPos == 1)
         {

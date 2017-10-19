@@ -8,6 +8,11 @@
 #include "../engine/assets.h"
 #include "../engine/controls.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 #define NUM_OBJ 64
 
 /// Player object
@@ -75,16 +80,6 @@ void update_obj_control(float tm)
     if(playZap)
     {
         play_sound(sndZap,0.4f);
-    }
-
-    // DEBUG
-    if(get_key_state((int)SDL_SCANCODE_PAGEUP) == PRESSED)
-    {
-        pl.pos.x += 304.0f;
-    }
-    else if(get_key_state((int)SDL_SCANCODE_PAGEDOWN) == PRESSED)
-    {
-        pl.pos.x -= 304.0f;
     }
 }
 

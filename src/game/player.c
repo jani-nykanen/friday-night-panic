@@ -3,6 +3,11 @@
 
 #include "player.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 #include "stage.h"
 #include "status.h"
 #include "game.h"
@@ -61,13 +66,13 @@ static void pl_control(PLAYER* pl, float tm)
         }
     }
 
-    if( (pl->canJump || pl->climbing) && vpad_get_button(0) == PRESSED)
+    if( (pl->canJump || pl->climbing) && (vpad_get_button(0) == PRESSED || vpad_get_button(1) == PRESSED))
     {
         play_sound(sndJump,0.45f);
         pl->speed.y = -2.5f;
         pl->climbing = false;
     }
-    else if(!pl->canJump && pl->speed.y < 0.0f && vpad_get_button(0) == RELEASED)
+    else if(!pl->canJump && pl->speed.y < 0.0f && (vpad_get_button(0) == RELEASED || vpad_get_button(1) == RELEASED))
     {
         pl->speed.y /= 2.0f;
     }

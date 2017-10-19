@@ -4,6 +4,10 @@
 #include "scene.h"
 
 #include "string.h"
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
 
 /// Set scene name
 void set_scene_name(SCENE* s, const char* name)

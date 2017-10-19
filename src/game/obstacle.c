@@ -8,6 +8,11 @@
 #include "../engine/graphics.h"
 #include "../engine/assets.h"
 
+#include "stdlib.h"
+#include "math.h"
+#include "stdio.h"
+
+
 /// Enemy bitmap
 static BITMAP* bmpEnemies;
 

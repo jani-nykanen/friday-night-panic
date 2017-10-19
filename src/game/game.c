@@ -112,13 +112,6 @@ static void game_update(float tm)
         set_pause_mode(1);
         app_swap_scene("pause");
     }
-
-    // TEMP
-    if(get_key_state((int)SDL_SCANCODE_P) == PRESSED)
-    {
-        app_swap_scene("title");
-    }
-
 }
 
 /// Draw game

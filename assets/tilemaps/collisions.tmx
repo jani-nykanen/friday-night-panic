@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" nextobjectid="1">
+ <properties>
+  <property name="name" value="Collisions"/>
+ </properties>
  <tileset firstgid="1" name="tile_types" tilewidth="16" tileheight="16" tilecount="32">
   <image source="../bitmaps/tile_types.png" width="256" height="32"/>
  </tileset>
