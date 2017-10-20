@@ -381,12 +381,12 @@ void player_get_collision(PLAYER*pl, VEC2 p, float w, bool horizontal, bool dir,
         {
             bool col = false;
 
-            if(dir && pl->speed.x > 0.0f && x+pw > p.x-0.5f*tm && x < p.x+8.0f * tm)
+            if(dir && pl->speed.x > 0.0f && x+pw > p.x-1*tm && x < p.x+4.0f * tm)
             {
                 pl->pos.x = p.x-pw;
                 col = true;
             }
-            else if(!dir && pl->speed.x < 0.0f && x-pw < p.x+0.5f*tm && x > p.x-8.0f * tm)
+            else if(!dir && pl->speed.x < 0.0f && x-pw < p.x+1*tm && x > p.x-4.0f * tm)
             {
                 pl->pos.x = p.x+pw;
                 col = true;

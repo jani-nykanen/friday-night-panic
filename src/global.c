@@ -1,6 +1,9 @@
 /// Global scene (source)
 /// (c) 2017 Jani Nykänen
 
+#define SDL_MAIN_HANDLED
+
+
 #include "global.h"
 
 #include "vpad.h"

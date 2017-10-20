@@ -111,7 +111,7 @@ void frame_update_tex(FRAME* fr)
 
     int i = 0;
     int pos = 0;
-    for(; i < fr->size; i++)
+    for(; i < (int)fr->size; i++)
     {
         pos = fr->colorData[i]*3;
         fr->data[i*4 + 1] = fr->palette[ pos +2 ];
