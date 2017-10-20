@@ -1,4 +1,5 @@
 [Fetch binary version here](https://jani-nykanen.itch.io/friday-night-panic)
+
 ![](https://img.itch.zone/aW1hZ2UvMTg1NzIzLzg2ODgzOC5naWY=/original/XxOPV8.gif)
 
 -----
